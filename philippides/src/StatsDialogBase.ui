@@ -243,7 +243,7 @@
 <customwidgets>
     <customwidget>
         <class>Phil::CStatsWidget</class>
-        <header location="local">/home/hirsch/devel/philippides/src/StatsWidget.h</header>
+        <header location="local">StatsWidget.h</header>
         <sizehint>
             <width>-1</width>
             <height>-1</height>

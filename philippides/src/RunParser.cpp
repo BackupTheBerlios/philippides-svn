@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file RunParser.cpp
- * This file contains the implementation of the class CRunParser.
- * brief description.
+ * This file contains the impelmentation of the class CRunParser
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/28/2004
