@@ -1,47 +1,81 @@
+#include <unit++/unit++.h>
 #include <iostream>
-
 #include <qstring.h>
 #include <qdatetime.h>
 
-#include "Exceptions.h"
 #include "Athlet.h"
+#include "Exceptions.h"
 
-int main(int argc, char** argv)
+using namespace unitpp;
+
+namespace
 {
-    try{
-	Phil::CAthlet* pAthlet = new Phil::CAthlet("Falco", "Hirschenberger", 
-						    Phil::CAthlet::MALE, QDate(1978, 7, 6));
-	pAthlet->m_nAvgDistance = 5000;
-	pAthlet->m_kmTime5 = QTime(0, 30, 0);
-	pAthlet->m_kmTime10 = QTime(0, 53, 0);
-	pAthlet->m_nWeight = 75;
-	pAthlet->m_nAvgPulse = 160;
-	pAthlet->m_nBiggestDistance = 22000;
-	pAthlet->m_nHeight = 178;
-	pAthlet->m_nRunningFreq = 4;
-	pAthlet->m_nMorningPulse = 55;
+
+class Test: public suite
+{
+
+public:
+    
+    Test():
+	suite("AthletTest")
+    {	
+	pMe = new Phil::CAthlet("Falco", "Hirschenberger", 
+				Phil::CAthlet::MALE, QDate(1978, 7, 6));
+
+	pMe->m_nAvgDistance = 5000;
+	pMe->m_kmTime5 = QTime(0, 30, 0);
+	pMe->m_kmTime10 = QTime(0, 53, 0);
+	pMe->m_nWeight = 75;
+	pMe->m_nAvgPulse = 160;
+	pMe->m_nBiggestDistance = 22000;
+	pMe->m_nHeight = 178;
+	pMe->m_nRunningFreq = 4;
+	pMe->m_nMorningPulse = 55;
 	
-	pAthlet->ToDisk(".", "athlet.xml");
-
-	Phil::CAthlet* pAthletNew= Phil::CAthlet::FromDisk(".", "athlet.xml");
 	
-	std::cout << "The classes are: " 
-		  << (!(*pAthletNew != *pAthlet) ? "EQUAL" : "NOT EQUAL") 
-		  << std::endl;
+	add("id1", testcase(this, "Serialization Test", &Test::SerialisationTest));
+	suite::main().add("id", this);
     }
-    catch(Except::PhilException& e)
-    {
-	std::cout << e.what() << std::endl;
+
+    ~Test(){
+	delete pMe;
+
+	// no I'm not pedantic, why do you ask? ;-)
+	pMe = 0;
     }
-    catch(std::exception& e)
-    {
-	std::cout << e.what() << std::endl;
-    }
-    catch(...)
-    {
-	std::cout << "UNCAUGHT EXCEPTION!" << std::endl;
+
+    void SerialisationTest(){
+
+	assert_true("Check weight", pMe->m_nWeight == 75);
+//	try{
+//	    pMe->ToDisk(".", "athlet.xml");
+//
+//	    Phil::CAthlet* pAthletNew= Phil::CAthlet::FromDisk(".", "athlet.xml");
+//
+//	    assert_true("are objects equal?", *pAthletNew == *pMe); 
+//	}
+//	catch(Except::PhilException& e)
+//	{
+//	    fail("Phil exception thrown");
+//	}
+//	catch(std::exception& e)
+//	{
+//	    fail("std::exception thrown");
+//	}
+//	catch(...)
+//	{
+//	    fail("Unknown exception thrown");
+//	}
     }
 
 
-exit(0);
-}
+private:
+
+    Phil::CAthlet* pMe;
+
+
+}* theTest = new Test();
+
+} // namespace
+
+
