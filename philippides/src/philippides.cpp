@@ -61,7 +61,10 @@ Philippides::Philippides():
     m_pStatsDialog(0),
     m_pTrackEditorDialog(0)
 {
+    // set minimum size to make enough space to render the html content correctly
+    setMinimumSize(1000, 850);
 
+    
     setupActions();
 
     statusBar()->show();
