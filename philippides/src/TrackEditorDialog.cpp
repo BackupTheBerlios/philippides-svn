@@ -81,12 +81,16 @@ void CTrackEditorDialog::SlotOpenBtn()
 
 void CTrackEditorDialog::SlotMagBtn()
 {
+    if(!m_pMapLabel) return;
+    
     m_pMapLabel->resize(m_pMapLabel->size() *= 1.1);
     mapWidget->center((int)(m_pMapLabel->width()/2.0), (int)(m_pMapLabel->height()/2.0));
 }
 
 void CTrackEditorDialog::SlotMinBtn()
 {
+    if(!m_pMapLabel) return;
+
     // if the image gets too small, a magnification is impossible/distortet, so we prevent
     // minification smaller then the viewport of the dialog.
     if(m_pMapLabel->width() < mapWidget->width() || m_pMapLabel->height() < mapWidget->height())
