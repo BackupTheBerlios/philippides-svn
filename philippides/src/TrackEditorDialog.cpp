@@ -47,12 +47,12 @@ CTrackEditorDialog::CTrackEditorDialog(QWidget* pParent, const char* szName):
     CTrackEditorDialogBase(pParent, szName),
     m_pMapLabel(0)
 {
-
+    /* EMPTY */ 
 }
 
 CTrackEditorDialog::~CTrackEditorDialog()
 {
-
+    /* EMPTY */ 
 }
 
 void CTrackEditorDialog::SlotOkBtn()

@@ -51,7 +51,7 @@ CMapWidget::CMapWidget(QWidget* pParent, const char* szName):
 
 CMapWidget::~CMapWidget()
 {
-
+    /* EMPTY */ 
 }
 /*
 void CMapWidget::paintEvent(QPaintEvent* e)
