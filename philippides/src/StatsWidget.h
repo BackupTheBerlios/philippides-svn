@@ -68,6 +68,7 @@ class CStatsWidget: public QFrame
     enum EnDrawMode{
 	    WEEK_MODE,
 	    MONTH_MODE,
+	    YEAR_WEEK_MODE,
 	    YEAR_MODE,
 	    FREE_MODE};
 

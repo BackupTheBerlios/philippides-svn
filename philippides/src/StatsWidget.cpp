@@ -107,6 +107,15 @@ void CStatsWidget::DrawData()
 		DrawGrid(monthList);
 	        break;
 	    }
+	case YEAR_WEEK_MODE:
+	    {
+		QStringList weekList;
+		for(unsigned int i=1; i<=53; i++){
+		    weekList += QString::number(i);
+		}
+		DrawGrid(weekList);
+		break;
+	    }
 	case YEAR_MODE:
 	    {
 		QStringList yearList;
@@ -173,18 +182,8 @@ void CStatsWidget::DrawBars()
     
     QPainter p(this);
     QPen BarFramePen(Qt::white);
-    QBrush BarFillBrush(Qt::red, Qt::Dense3Pattern);
-    p.setPen(BarFramePen);
-    p.setBrush(BarFillBrush);
-
-    for(unsigned int i=0; i<m_pData->size(); i++){
-	if(m_pData->at(i) == 0)
-	    continue;
-	unsigned int nX = i*nColWidth + m_nLeftBorder;
-	unsigned int nY = nDrawHeight-(unsigned int)(m_pData->at(i)*fScale);
-	p.drawRect(nX, nY, nColWidth, nDrawHeight-nY);
-    }
-   
+    QPen GridPen(Qt::gray);
+     
     unsigned int nStep=0;
     if(nMaxVal<10000)
 	nStep = 1000;
@@ -197,16 +196,30 @@ void CStatsWidget::DrawBars()
     else
 	nStep = 100000;
    
-    kdDebug() << "Max: " << nMaxVal << "\tStep: " << nStep << endl;
-    
     // draw values on the y-axis
-    for(unsigned int i=0; i<nMaxVal; i+=nStep){
+    for(unsigned int i=0; i<nMaxVal + nStep; i+=nStep){
+	p.setPen(BarFramePen);
 	unsigned int nY = nDrawHeight - (unsigned int)(i*fScale)-10;
 	p.drawText(5, nY, m_nLeftBorder-10, 20, Qt::AlignRight, 
 				QString::number(i/1000));
+	p.setPen(GridPen);
+	p.drawLine(m_nLeftBorder, nY+10, width(), nY+10);  
     }
 	
-    
+    QBrush BarFillBrush(Qt::red, Qt::Dense3Pattern);
+    p.setPen(BarFramePen);
+    p.setBrush(BarFillBrush);
+
+    // draw bars
+    for(unsigned int i=0; i<m_pData->size(); i++){
+	if(m_pData->at(i) == 0)
+	    continue;
+	unsigned int nX = i*nColWidth + m_nLeftBorder;
+	unsigned int nY = nDrawHeight-(unsigned int)(m_pData->at(i)*fScale);
+	p.drawRect(nX, nY, nColWidth, nDrawHeight-nY);
+    }
+   
+   
 }
 
 };//namespace

@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>719</width>
-            <height>542</height>
+            <height>544</height>
         </rect>
     </property>
     <property name="caption">
@@ -114,6 +114,14 @@
                         <cstring>kDateWidget1</cstring>
                     </property>
                 </widget>
+                <widget class="QRadioButton" row="2" column="2">
+                    <property name="name">
+                        <cstring>weekYearBtn</cstring>
+                    </property>
+                    <property name="text">
+                        <string>week year</string>
+                    </property>
+                </widget>
                 <widget class="QRadioButton" row="2" column="3">
                     <property name="name">
                         <cstring>yearBtn</cstring>
@@ -125,18 +133,7 @@
                         <string>Alt+Y</string>
                     </property>
                 </widget>
-                <widget class="QRadioButton" row="2" column="2">
-                    <property name="name">
-                        <cstring>monthBtn</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;month</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+M</string>
-                    </property>
-                </widget>
-                <widget class="QRadioButton" row="2" column="1">
+                <widget class="QRadioButton" row="2" column="0">
                     <property name="name">
                         <cstring>weekBtn</cstring>
                     </property>
@@ -148,6 +145,17 @@
                     </property>
                     <property name="checked">
                         <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="2" column="1">
+                    <property name="name">
+                        <cstring>monthBtn</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;month</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+M</string>
                     </property>
                 </widget>
             </grid>
@@ -243,7 +251,7 @@
 <customwidgets>
     <customwidget>
         <class>Phil::CStatsWidget</class>
-        <header location="local">StatsWidget.h</header>
+        <header location="local">/home/hirsch/devel/philippides/src/StatsWidget.h</header>
         <sizehint>
             <width>-1</width>
             <height>-1</height>

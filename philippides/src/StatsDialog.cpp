@@ -114,6 +114,19 @@ void CStatsDialog::SlotCreateStats()
 	}
 	statsWidget->SetData(m_pData, CStatsWidget::MONTH_MODE);
     }
+    else if(weekYearBtn->isOn()){
+	m_pData = new std::vector<unsigned int>(53, 0);
+	for(pRun = m_pRunList->first(); pRun; pRun = m_pRunList->next()){
+	    int nDaysTo = pRun->m_Date.daysTo(QDate::currentDate());
+	    if(nDaysTo > QDate::currentDate().daysInYear())
+		continue;
+	    if(nDaysTo < 0)
+		break;
+	    if(nDaysTo < QDate::currentDate().dayOfYear())
+		m_pData->at(pRun->m_Date.weekNumber()) += pRun->m_nLength;
+	}
+	statsWidget->SetData(m_pData, CStatsWidget::YEAR_WEEK_MODE);
+    }
     else if(yearBtn->isOn()){
 	m_pData = new std::vector<unsigned int>(12, 0);
 	for(pRun = m_pRunList->first(); pRun; pRun = m_pRunList->next()){
