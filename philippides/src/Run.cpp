@@ -100,7 +100,7 @@ QString CRun::ToXml() const
 	    << "\t<date>" << m_Date.toString(Qt::ISODate) << "</date>\n"
 	    << "\t<time>" << m_Time.toString(Qt::ISODate) << "</time>\n"
 	    << ((m_nLength > 0) ? "\t<length>" + QString::number(m_nLength) + "</length>\n" : "")
-	    << ((m_nPulse > 0) ? "\t<pulse>" + QString::number(m_nPulse) + "</pulse\n" : "")
+	    << ((m_nPulse > 0) ? "\t<pulse>" + QString::number(m_nPulse) + "</pulse>\n" : "")
 	    << ((m_EnWeather != NOWEATHER) ? "\t<weather>" + QString::number(m_EnWeather) +
 		"</weather>\n" : "")
 	    << ((m_EnImpression != NOIMPRESSION) ? "\t<impression>" + 

@@ -1,3 +1,12 @@
+/**
+ * @file AthletDtd.h
+ * The CAthlet DTD and version.
+ * This file contains the DTD for the CAthlet entity as a constant string
+ * and a string for the version number of this DTD to ease updates.
+ *
+ * @author Falco Hirschenberger <hirsch@bigfoot.de>
+ * @date   Sun Mar 21 21:22:30 CET 2004
+ **/
 #ifndef __ATHLET_DTD_H__
 #define __ATHLET_DTD_H__
 

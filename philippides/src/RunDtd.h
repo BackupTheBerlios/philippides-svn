@@ -1,3 +1,12 @@
+/**
+ * @file RunDtd.h
+ * The RunDB DTD and version.
+ * This file contains the DTD for the RunBD XML representation and a string which 
+ * contains the version number of this DTD to ease updates.
+ *
+ * @author Falco Hirschenberger <hirsch@bigfoot.de>
+ * @date   Sun Mar 21 21:24:16 CET 2004
+ **/
 #ifndef __RUN_DTD_H__
 #define __RUN_DTD_H__
 

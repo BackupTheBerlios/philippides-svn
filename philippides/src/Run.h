@@ -68,10 +68,10 @@ class CRun
     typedef CRun TSelf;
 
     /** weather conditions */
-    enum EnWeather{ CLEAR, CLOUDY, STORMY, SNOWY, NOWEATHER };
+    enum EnWeather{ NOWEATHER = -1, CLEAR, CLOUDY, STORMY, SNOWY };
 
     /** the athlet's personal impression of the run */
-    enum EnImpression{ GOOD, FAIR, BAD, ABORTED, NOIMPRESSION };
+    enum EnImpression{ NOIMPRESSION = -1, GOOD, FAIR, BAD, ABORTED };
     
     //--------------------------------------------------------------------------
     // structors
