@@ -34,6 +34,10 @@
 // qt forwarding
 class QWidget;
 
+// kde forwarding
+class KHTMLView;
+class KHTMLPart;
+
 // local forwarding
 namespace Phil
 {
@@ -192,7 +196,7 @@ class CDbWidget: public CDbWidgetBase
 	const CAthlet* m_pAthlet;	///< The user's CAthlet representation
 	bool m_bChanged;		///< Flag which marks if the database had been 
 					///< changed since last save.
-					
+	KHTMLPart* m_pHtmlPart;
     private:
 	/**
 	 * Updates all CAthlet related labels with m_pAthlet's values.

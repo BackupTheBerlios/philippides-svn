@@ -27,14 +27,30 @@
 #include <qtextedit.h>
 #include <qptrlist.h>
 #include <qwidgetstack.h>
-
+#include <qlayout.h>
 
 // kde includes
 #include <klocale.h>
 #include <kdebug.h>
 #include <klistview.h>
 #include <kmessagebox.h>
+#include <khtml_part.h>
+#include <khtmlview.h>
 
+// libxml includes
+#include <libxml/xmlmemory.h>
+#include <libxml/debugXML.h>
+#include <libxml/HTMLtree.h>
+#include <libxml/xmlIO.h>
+#include <libxml/DOCBparser.h>
+#include <libxml/xinclude.h>
+#include <libxml/catalog.h>
+
+// libxslt includes
+#include <libxslt/xslt.h>
+#include <libxslt/xsltInternals.h>
+#include <libxslt/transform.h>
+#include <libxslt/xsltutils.h>
 
 //------------------------------------------------------------------------------
 // local headers
@@ -50,7 +66,7 @@
 //------------------------------------------------------------------------------
 // macros
 //------------------------------------------------------------------------------
-
+extern int xmlLoadExtDtdDefaultValue;
 
 //******************************************************************************
 // implementation
@@ -69,6 +85,13 @@ CDbWidget::CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthle
     if(m_pAthlet)
 	UpdateAthletLabel();
 
+    QHBoxLayout* pLayout = new QHBoxLayout(m_pHtmlFrame);
+//    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, "htmlpart", this, "htmlpart");
+    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, 0);
+    m_pHtmlPart->view()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    kdDebug() << m_pHtmlPart->name() << endl; 
+    pLayout->addWidget(m_pHtmlPart->view());
+    
     connect((QObject*)AddBtn, SIGNAL(clicked()), SLOT(SlotNewRun()));
     connect((QObject*)DelBtn, SIGNAL(clicked()), SLOT(SlotDelRun()));
     connect((QObject*)EditBtn, SIGNAL(clicked()), SLOT(SlotEditRun()));
@@ -222,6 +245,30 @@ void CDbWidget::UpdateAthletLabel()
     RunFreqLabel->setText(QString::number(m_pAthlet->m_nRunningFreq)+"x");
     AvgPulseLabel->setText(QString::number(m_pAthlet->m_nAvgPulse)+"/s");
     MorningPulseLabel->setText(QString::number(m_pAthlet->m_nMorningPulse)+"/s");
+
+
+    // XSLT stuff
+    xmlSubstituteEntitiesDefault(1);
+    xmlLoadExtDtdDefaultValue = 1;
+    xsltStylesheetPtr pStylesheet = xsltParseStylesheetFile((const xmlChar*)"xslt/athlet2html.xsl");
+    kdDebug() << "*" << endl;
+    xmlDocPtr pXml = xmlParseFile("xslt/athlet.xml");
+    xmlDocPtr pHtml = xsltApplyStylesheet(pStylesheet, pXml, 0);
+    
+    xmlChar* pString;
+    int nSize;
+    xmlDocDumpMemory(pHtml, &pString, &nSize);    
+    kdDebug() << "+" << endl;
+    m_pHtmlPart->begin();
+    m_pHtmlPart->write("test");
+   // m_pHtmlPart->write(QString((char*)pString));
+    m_pHtmlPart->end();
+    
+    xsltFreeStylesheet(pStylesheet);
+    xmlFreeDoc(pXml);
+    xmlFreeDoc(pHtml);
+    xsltCleanupGlobals();
+    xmlCleanupParser();
 }
 
 CRunPtrList* CDbWidget::GetRunList() const

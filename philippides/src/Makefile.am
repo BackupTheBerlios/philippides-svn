@@ -1,5 +1,5 @@
 # set the include path for X, qt and KDE
-INCLUDES = $(all_includes)
+INCLUDES = $(all_includes) -I/usr/include/libxml2 
 
 # these are the headers for your project
 noinst_HEADERS = philippides.h \
@@ -52,9 +52,9 @@ philippides_SOURCES = 	main.cpp \
 			StatsWidget.cpp \
 			RunPtrList.cpp
  
-philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-philippides_LDADD = $(LIB_KDEUI)
-
+philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)  
+ 
+philippides_LDADD = $(LIB_KDEUI) $(LIB_KHTML) -lxslt -lxml2 -lz -lpthread -lm
 # this is where the desktop file will go 
 kdelnkdir   = $(kde_appsdir)/Utilities
 kdelnk_DATA = philippides.desktop
