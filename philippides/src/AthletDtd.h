@@ -24,6 +24,16 @@ namespace DTD
 const char* const szAthletFile = "athlet.xml";
 
 /**
+ * filename of the athlet to html xslt transformation
+ */
+const char* const szAthletToHtmlFile = "xslt/athlet2html.xsl";
+
+/**
+ * image filenames which are diplayes in the XSLT transformed HTML page
+ */
+const char* const pszAthletImages[2] = {"pics/runner.png", "pics/runner-light.png"};
+
+/**
  * the athlet DTD's version number
  */
 const char* const szAthletVERSION = "1.0";

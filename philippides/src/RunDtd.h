@@ -24,6 +24,11 @@ const char* const szRunFile = "rundb.xml";
 const char* const szRundbVERSION = "1.0";
 
 /**
+ * the CRun xslt to html transform file
+ */
+const char* const szRunToHtmlFile = "xslt/run2html.xsl";
+
+/**
  * the run DTD
  */
 const char* const szRunDtd = 

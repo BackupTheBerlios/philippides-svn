@@ -36,6 +36,7 @@
 #include <kmessagebox.h>
 #include <khtml_part.h>
 #include <khtmlview.h>
+#include <kstandarddirs.h>
 
 // libxml includes
 #include <libxml/xmlmemory.h>
@@ -59,6 +60,9 @@
 #include "RunListViewItem.h"
 #include "RunDialog.h"
 #include "Athlet.h"
+#include "AthletDtd.h"
+#include "Run.h"
+#include "RunDtd.h"
 #include "DbWidget.h"
 #include "RunPtrList.h"
 
@@ -82,11 +86,15 @@ CDbWidget::CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthle
     m_pAthlet(pAthlet),
     m_bChanged(false)
 {
-    QHBoxLayout* pLayout = new QHBoxLayout(m_pHtmlFrame);
-    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, "htmlpart", this, "htmlpart");
-    m_pHtmlPart->view()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    kdDebug() << m_pHtmlPart->name() << endl; 
-    pLayout->addWidget(m_pHtmlPart->view());
+    QHBoxLayout* pAthletLayout = new QHBoxLayout(m_pAthletHtmlFrame);
+    m_pAthletHtmlPart = new KHTMLPart(m_pAthletHtmlFrame, "athlethtmlpart", this, "athlethtmlpart");
+    m_pAthletHtmlPart->view()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    pAthletLayout->addWidget(m_pAthletHtmlPart->view());
+   
+    QHBoxLayout* pRunLayout = new QHBoxLayout(m_pRunHtmlFrame);
+    m_pRunHtmlPart = new KHTMLPart(m_pRunHtmlFrame, "runhtmlpart", this, "runhtmlpart");
+    m_pRunHtmlPart->view()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    pRunLayout->addWidget(m_pRunHtmlPart->view());
     
     connect((QObject*)AddBtn, SIGNAL(clicked()), SLOT(SlotNewRun()));
     connect((QObject*)DelBtn, SIGNAL(clicked()), SLOT(SlotDelRun()));
@@ -182,25 +190,27 @@ void CDbWidget::SlotSelected(QListViewItem* pItem)
 {
     const CRun* pRun = static_cast<CRunListViewItem*>(pItem)->GetRun();
 
-    DateLabel->setText(pRun->m_Date.toString(Qt::ISODate));
-    LengthLabel->setText(QString::number(pRun->m_nLength) + "m");
-    TimeLabel->setText(pRun->m_Time.toString(Qt::ISODate));
-    PulseLabel->setText(QString::number(pRun->m_nPulse) + "/s");
-    CommentEdit->setText(pRun->m_sComment);
-
-    /// @todo change the sequence of images in the stack that 0 is the no-image
-    // widget, so we can do a pRun->m_EnWeather - 1 to show the right one and we don't have
-    // to use 4 as magic number
-    if(pRun->m_EnWeather >= 0)
-	WeatherStack->raiseWidget(pRun->m_EnWeather);
-    else
-	WeatherStack->raiseWidget(4);
-
-    if(pRun->m_EnImpression >= 0)
-	ImpressionStack->raiseWidget(pRun->m_EnImpression);
-    else
-	ImpressionStack->raiseWidget(4);
-
+    // XSLT stuff
+    xmlSubstituteEntitiesDefault(1);
+    xmlLoadExtDtdDefaultValue = 1;
+    QString sXsltFile = locate("data", QString("philippides/") + DTD::szRunToHtmlFile);
+    xsltStylesheetPtr pStylesheet = xsltParseStylesheetFile((const xmlChar*)sXsltFile.ascii());
+    QString sXml = pRun->ToXml();
+    xmlDocPtr pXml = xmlParseMemory(sXml.ascii(), sXml.length());
+    xmlDocPtr pHtml = xsltApplyStylesheet(pStylesheet, pXml, 0);
+    
+    xmlChar* pString;
+    int nSize;
+    xmlDocDumpMemory(pHtml, &pString, &nSize);    
+    m_pRunHtmlPart->begin();
+    m_pRunHtmlPart->write(QString((char*)pString));
+    m_pRunHtmlPart->end();
+    
+    xsltFreeStylesheet(pStylesheet);
+    xmlFreeDoc(pXml);
+    xmlFreeDoc(pHtml);
+    xsltCleanupGlobals();
+    xmlCleanupParser();
 }
 
 void CDbWidget::SlotSaveDatabase()
@@ -226,41 +236,21 @@ void CDbWidget::SlotSaveDatabase()
 
 void CDbWidget::UpdateAthletLabel()
 {
-    FNameLabel->setText(m_pAthlet->m_sFirstName);
-    LNameLabel->setText(m_pAthlet->m_sLastName);
-
-    if(m_pAthlet->m_EnGender == CAthlet::MALE)
-	GenderLabel->setText("male");
-    else
-	GenderLabel->setText("female");
-
-    BirthdayLabel->setText(m_pAthlet->m_birthday.toString(Qt::TextDate));
-    HeightLabel->setText(QString::number(m_pAthlet->m_nHeight)+"cm");
-    WeightLabel->setText(QString::number(m_pAthlet->m_nWeight)+"kg");
-    Km5Label->setText(m_pAthlet->m_kmTime5.toString(Qt::TextDate));
-    Km10Label->setText(m_pAthlet->m_kmTime10.toString(Qt::TextDate));
-    AvgDistLabel->setText(QString::number(m_pAthlet->m_nAvgDistance)+"m");
-    BigDistLabel->setText(QString::number(m_pAthlet->m_nBiggestDistance)+"m");
-    RunFreqLabel->setText(QString::number(m_pAthlet->m_nRunningFreq)+"x");
-    AvgPulseLabel->setText(QString::number(m_pAthlet->m_nAvgPulse)+"/s");
-    MorningPulseLabel->setText(QString::number(m_pAthlet->m_nMorningPulse)+"/s");
-
-
     // XSLT stuff
     xmlSubstituteEntitiesDefault(1);
     xmlLoadExtDtdDefaultValue = 1;
-    xsltStylesheetPtr pStylesheet = xsltParseStylesheetFile((const xmlChar*)"xslt/athlet2html.xsl");
-    kdDebug() << "*" << endl;
-    xmlDocPtr pXml = xmlParseFile("xslt/athlet.xml");
+    QString sXsltFile = locate("data", QString("philippides/") + 
+							    DTD::szAthletToHtmlFile);
+    xsltStylesheetPtr pStylesheet = xsltParseStylesheetFile((const xmlChar*)sXsltFile.ascii());
+    xmlDocPtr pXml = xmlParseFile(locate("data", QString("philippides/") + DTD::szAthletFile));
     xmlDocPtr pHtml = xsltApplyStylesheet(pStylesheet, pXml, 0);
     
     xmlChar* pString;
     int nSize;
     xmlDocDumpMemory(pHtml, &pString, &nSize);    
-    kdDebug() << "+" << endl;
-    m_pHtmlPart->begin();
-    m_pHtmlPart->write(QString((char*)pString));
-    m_pHtmlPart->end();
+    m_pAthletHtmlPart->begin();
+    m_pAthletHtmlPart->write(QString((char*)pString));
+    m_pAthletHtmlPart->end();
     
     xsltFreeStylesheet(pStylesheet);
     xmlFreeDoc(pXml);

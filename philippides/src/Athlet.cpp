@@ -21,6 +21,7 @@
 //------------------------------------------------------------------------------
 // qt includes
 #include <qtextstream.h>
+#include <qfileinfo.h>
 #include <qfile.h>
 #include <qxml.h>
 
@@ -97,6 +98,11 @@ QString CAthlet::ToXml() const
 {
     QString sXml;
     QTextStream stream(&sXml, IO_WriteOnly);
+
+    // find out where the images are stored which will be used in XSLT transform
+    // to generate a nice HTML page
+    QFileInfo path(locate("data", QString("philippides/") + DTD::pszAthletImages[0]));
+    QString sPath = path.dirPath(true);
   
     // ok, ok, this looks really ugly but it is a compact way of interleaving
     // variables into xml strings. 
@@ -104,6 +110,7 @@ QString CAthlet::ToXml() const
     stream  << "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"
 	    <<  DTD::szAthletDtd
 	    <<  "<athlet version=\"" << DTD::szAthletVERSION << "\">\n"
+	    <<  "<imagepath>" << sPath << "</imagepath>\n"
 	    << (m_sFirstName.isEmpty() ? "" : 
 		"\t<firstname>" + m_sFirstName + "</firstname>\n")
 	    << (m_sLastName.isEmpty() ? "" : 
