@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------------
 // STL headers
 //------------------------------------------------------------------------------
-
+#include <algorithm>
 
 //------------------------------------------------------------------------------
 // xyzlib headers
@@ -24,11 +24,13 @@
 #include <qapplication.h>
 #include <qpainter.h>
 #include <qpen.h>
+#include <qbrush.h>
 #include <qdatetime.h>
 #include <qstring.h>
 
 // kde includes
 #include <klocale.h>
+#include <kdebug.h>
 
 //------------------------------------------------------------------------------
 // local headers
@@ -79,10 +81,13 @@ CStatsWidget::~CStatsWidget()
 void CStatsWidget::paintEvent(QPaintEvent* p)
 {
     DrawData();
+    DrawBars();
 }
 
 void CStatsWidget::DrawData()
 {
+    m_nLeftBorder = 40;
+    m_nBottomBorder = 20;
     switch(m_EnDrawMode){
 	case WEEK_MODE:
 	    {
@@ -96,7 +101,7 @@ void CStatsWidget::DrawData()
 	case MONTH_MODE:
 	    {
 		QStringList monthList;
-		for(int i=1; i<=31; i++){
+		for(unsigned int i=1; i<=m_pData->size(); i++){
 		    monthList += QString::number(i);
 		}
 		DrawGrid(monthList);
@@ -123,23 +128,21 @@ void CStatsWidget::DrawData()
 void CStatsWidget::DrawGrid(const QStringList& labelList)
 {
     unsigned int nCols = labelList.size();
-    unsigned int nLeftBorder = 40;
-    unsigned int nBottomBorder = 20;
-    unsigned int nWidth = width() - nLeftBorder;
-    unsigned int nHeight = height() - nBottomBorder;
+    unsigned int nWidth = width() - m_nLeftBorder;
+    unsigned int nHeight = height() - m_nBottomBorder;
     QPainter p(this);
     QPen GridPen(Qt::gray);
     QPen TextPen(Qt::lightGray);
     p.setPen(GridPen);
 
     // draw horizontal line
-    p.drawLine(nLeftBorder, nHeight, width(), nHeight);
+    p.drawLine(m_nLeftBorder, nHeight, width(), nHeight);
     
     unsigned int nColWidth = nWidth / nCols;
 	    
     // draw vertical lines
     for(unsigned int i=0; i<nCols; i++){
-	unsigned int nX = i*nColWidth + nLeftBorder;
+	unsigned int nX = i*nColWidth + m_nLeftBorder;
 	p.drawLine(nX, 0, nX, nHeight);
     }
     
@@ -147,8 +150,38 @@ void CStatsWidget::DrawGrid(const QStringList& labelList)
     
     // draw weekday names
     for(unsigned int i=0; i<labelList.size(); i++){
-	unsigned int nX = i*nColWidth + nLeftBorder + 5;
+	unsigned int nX = i*nColWidth + m_nLeftBorder + 5;
 	p.drawText(nX, height()-5, labelList[i]);
+    }
+}
+
+void CStatsWidget::DrawBars()
+{
+    for(int i=0; i<m_pData->size(); i++)
+	kdDebug() << "Value: " << m_pData->at(i) << endl;
+    unsigned int nCols = m_pData->size();
+    unsigned int nDrawWidth = width() - m_nLeftBorder;
+    unsigned int nDrawHeight = height() - m_nBottomBorder;
+    unsigned int nColWidth = nDrawWidth / nCols;
+    unsigned int nMaxVal = *(std::max_element(m_pData->begin(), m_pData->end())); 
+   
+    float fScale = ((float)nDrawHeight) / nMaxVal;
+
+    // scale to 90% of draw area
+    fScale *= 0.9;
+    
+    QPainter p(this);
+    QPen BarFramePen(Qt::white);
+    QBrush BarFillBrush(Qt::red, Qt::Dense3Pattern);
+    p.setPen(BarFramePen);
+    p.setBrush(BarFillBrush);
+
+    for(unsigned int i=0; i<m_pData->size(); i++){
+	if(m_pData->at(i) == 0)
+	    continue;
+	unsigned int nX = i*nColWidth + m_nLeftBorder;
+	unsigned int nY = nDrawHeight-(unsigned int)(m_pData->at(i)*fScale);
+	p.drawRect(nX, nY, nColWidth, nDrawHeight-nY);
     }
 }
 

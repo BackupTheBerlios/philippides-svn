@@ -17,7 +17,7 @@
 //------------------------------------------------------------------------------
 // STL headers
 //------------------------------------------------------------------------------
-
+#include <vector>
 
 //------------------------------------------------------------------------------
 // xyzlib headers
@@ -32,9 +32,11 @@
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-// qt forwarding
-class Phil::CRun;
-class QPtrList<CRun>;
+namespace Phil
+{
+    class CRunPtrList;
+}
+
 
 //------------------------------------------------------------------------------
 // macros
@@ -74,7 +76,7 @@ class CStatsDialog: public CStatsDialogBase
 	*
 	* @param name desc
 	**/
-	CStatsDialog(const QPtrList<Phil::CRun>* pRunList, QWidget* pParent, const char* szName);
+	CStatsDialog(CRunPtrList* pRunList, QWidget* pParent, const char* szName);
 
 	/** default destructor */
 	virtual ~CStatsDialog();
@@ -92,15 +94,19 @@ class CStatsDialog: public CStatsDialogBase
     //------------------------------------------------------------------------------
     // methods
     //------------------------------------------------------------------------------
-	
+		
     protected:
 
+    private slots:
+	void SlotCreateStats();
 
     private:
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-    const QPtrList<Phil::CRun>* m_pRunList;
+	CRunPtrList* m_pRunList;
+	std::vector<unsigned int>* m_pData;
+
     private:
     //------------------------------------------------------------------------------
     // implementation protection

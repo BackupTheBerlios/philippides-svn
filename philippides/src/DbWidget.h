@@ -39,6 +39,7 @@ namespace Phil
 {
     class CAthlet;
     class CRun;
+    class CRunPtrList;
 }
 
 //------------------------------------------------------------------------------
@@ -125,7 +126,7 @@ class CDbWidget: public CDbWidgetBase
 	void SetChanged(bool bChanged) {m_bChanged = bChanged;}
 
 
-	const QPtrList<CRun>* GetRunList() const;
+	CRunPtrList* GetRunList() const;
 	
     //------------------------------------------------------------------------------
     // operator

@@ -44,6 +44,7 @@
 #include "RunDialog.h"
 #include "Athlet.h"
 #include "DbWidget.h"
+#include "RunPtrList.h"
 
 
 //------------------------------------------------------------------------------
@@ -223,9 +224,9 @@ void CDbWidget::UpdateAthletLabel()
     MorningPulseLabel->setText(QString::number(m_pAthlet->m_nMorningPulse)+"/s");
 }
 
-const QPtrList<CRun>* CDbWidget::GetRunList() const
+CRunPtrList* CDbWidget::GetRunList() const
 {
-    QPtrList<CRun>* pRunList = new QPtrList<CRun>();
+    CRunPtrList* pRunList = new CRunPtrList();
     
     CRunListViewItem* pItem = static_cast<CRunListViewItem*>(RunListView->firstChild());
 
