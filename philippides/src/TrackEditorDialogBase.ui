@@ -179,7 +179,7 @@
 <customwidgets>
     <customwidget>
         <class>QScrollView</class>
-        <header location="global">/usr/include/qt3/qscrollview.h</header>
+        <header location="global">qscrollview.h</header>
         <sizehint>
             <width>256</width>
             <height>256</height>
