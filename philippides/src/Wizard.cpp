@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file Wizard.cpp
- * short description.
- * brief description.
+ * This file contains the CWizard implementation.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date 23.3.2004
@@ -82,7 +81,8 @@ CWizard::CWizard(QWidget* pParent, const char* szName):
 	    LicenseTextBrowser->setText( stream.read() );
 	}
 	else{
-	    LicenseTextBrowser->setText( "Can't open license file!" );
+	    LicenseTextBrowser->setText( "Can't open license file!\n"
+				"Read the COPYING file distributed with this software");
 	}
 	
 	file.close();
@@ -117,7 +117,7 @@ CAthlet* CWizard::GetAthlet() const
 {
     if ( !m_pAthlet )
 	throw Except::GenericException( "CWizard::GetAthlet", 
-					"Trying to get a athlet object* while none was created" );
+			    "Trying to get a athlet object* while none was created" );
 return m_pAthlet;
 }
 

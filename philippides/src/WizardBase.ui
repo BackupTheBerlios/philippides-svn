@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>724</width>
-            <height>481</height>
+            <height>483</height>
         </rect>
     </property>
     <property name="caption">
@@ -23,7 +23,7 @@
             <cstring>page_1</cstring>
         </property>
         <attribute name="title">
-            <string>Page1 Disclaimer</string>
+            <string>Page1 disclaimer</string>
         </attribute>
         <grid>
             <property name="name">
@@ -70,7 +70,10 @@
                                     <cstring>AcceptBtn</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>I accept.</string>
+                                    <string>&amp;I accept.</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+I</string>
                                 </property>
                             </widget>
                             <widget class="QRadioButton">
@@ -78,7 +81,10 @@
                                     <cstring>NoWayBtn</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>No way!</string>
+                                    <string>No w&amp;ay!</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+A</string>
                                 </property>
                                 <property name="checked">
                                     <bool>true</bool>
@@ -165,7 +171,7 @@
                     </font>
                 </property>
                 <property name="text">
-                    <string>Disclaimer:</string>
+                    <string>Disclaimer</string>
                 </property>
             </widget>
             <widget class="QTextBrowser" row="1" column="1">
@@ -186,7 +192,7 @@
             <cstring>page_2</cstring>
         </property>
         <attribute name="title">
-            <string>Page 2 Personal data</string>
+            <string>Page2 personal data</string>
         </attribute>
         <grid>
             <property name="name">
@@ -263,7 +269,7 @@
                     <cstring>GroupBox1</cstring>
                 </property>
                 <property name="title">
-                    <string>Personal (!)&amp;data</string>
+                    <string>&amp;Personal &amp;data</string>
                 </property>
                 <hbox>
                     <property name="name">
@@ -298,7 +304,7 @@
                                     <cstring>TextLabel2</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>First Name</string>
+                                    <string>First name</string>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" row="0" column="1">
@@ -349,7 +355,7 @@
                                     <cstring>TextLabel2_2</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Last Name</string>
+                                    <string>Last name</string>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" row="1" column="1">
@@ -410,7 +416,7 @@
                     <cstring>GroupBox2</cstring>
                 </property>
                 <property name="title">
-                    <string>What's (!)&amp;your ...</string>
+                    <string>&amp;What's your...</string>
                 </property>
                 <hbox>
                     <property name="name">
@@ -437,7 +443,7 @@
                                     <cstring>TextLabel9</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... biggest distance you succeeded?</string>
+                                    <string>...biggest distance you succeeded?</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="8" column="0" rowspan="2" colspan="1">
@@ -445,7 +451,7 @@
                                     <cstring>TextLabel10</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... average running pulse [1/s]</string>
+                                    <string>...average running pulse [1/s]</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="10" column="0">
@@ -453,8 +459,8 @@
                                     <cstring>TextLabel11</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... morning pulse (measure before you 
-	get up in the morning)? [1/s]</string>
+                                    <string>...morning pulse (measure before you&lt;br&gt;
+get up in the morning)? [1/s]</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="3" column="0" rowspan="2" colspan="1">
@@ -462,7 +468,7 @@
                                     <cstring>TextLabel8</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... 5km time? [hh:mm:ss]</string>
+                                    <string>...5km time? [hh:mm:ss]</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="0" column="0">
@@ -470,7 +476,7 @@
                                     <cstring>TextLabel6</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... weekly runningfrequency?</string>
+                                    <string>...weekly runningfrequency?</string>
                                 </property>
                             </widget>
                             <widget class="KIntNumInput" row="0" column="1" rowspan="2" colspan="1">
@@ -509,7 +515,7 @@
                                     <cstring>TextLabel8_2</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... 10km time? [hh:mm:ss]</string>
+                                    <string>...10km time? [hh:mm:ss]</string>
                                 </property>
                             </widget>
                             <widget class="KIntNumInput" row="10" column="1">
@@ -522,7 +528,7 @@
                                     <cstring>TextLabel7</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>... average distance?</string>
+                                    <string>...average distance?</string>
                                 </property>
                             </widget>
                         </grid>
@@ -536,7 +542,7 @@
             <cstring>page_3</cstring>
         </property>
         <attribute name="title">
-            <string>Page 3 Have fun!</string>
+            <string>Page3 have fun!</string>
         </attribute>
         <grid>
             <property name="name">

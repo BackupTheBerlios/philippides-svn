@@ -21,7 +21,11 @@
 //------------------------------------------------------------------------------
 // qt includes
 #include <qtextstream.h>
+#include <qfile.h>
 
+// kde includes
+#include <kapplication.h>
+#include <kstandarddirs.h>
 
 //------------------------------------------------------------------------------
 // local headers
@@ -122,6 +126,36 @@ QString CAthlet::ToXml() const
 	    << "</athlet>\n";
 return sXml;
 }
+
+
+void CAthlet::ToDisk() const
+{
+    QString sPath = kapp->dirs()->saveLocation("data", "philippides/");
+
+    ToDisk(sPath, DTD::szAthletFile);
+}
+
+
+void CAthlet::ToDisk(const QString& sPath, const QString& sFileName) const
+{
+    QFile file(sPath + '/' + sFileName);
+    if( file.open(IO_WriteOnly) ){
+	QTextStream stream(&file);
+	stream << ToXml();
+	file.flush();
+	file.close();
+    }
+    else{
+	throw Except::IOException("CAthlet::ToDisk", file.name());
+    }
+}
+
+
+bool CAthlet::FileExists()
+{
+    return !locate("data", QString("philippides/") + DTD::szAthletFile).isEmpty();
+}
+
 
 };//namespace
 

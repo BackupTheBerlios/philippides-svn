@@ -24,7 +24,9 @@ if(not $namespace){
     print "\nUsing standard namespace ITWM\n";
 }
 
-$date = ((gmtime)[3]+1) . '.' . ((gmtime)[4]+1) . '.' . ((gmtime)[5]+1900);
+$date = (qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec))[(gmtime)[4]] . 
+	'/' . ((gmtime)[3]+1) .
+	'/' . ((gmtime)[5]+1900);
 
 $headfilename = $classname.".h";
 $headfilename =~ s/^C//;

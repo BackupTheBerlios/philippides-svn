@@ -1,9 +1,6 @@
 /**
  * @file philippides.h
- * This is the
- *
- *
- * $Id$
+ * This file contains the class \b Philippides
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date   Sun Mar 14 18:17:04 CET 2004
@@ -15,10 +12,18 @@
 #include <config.h>
 #endif
 
+//------------------------------------------------------------------------------ 
+// xyzlib headers
+//------------------------------------------------------------------------------ 
+// kde includes
 #include <kmainwindow.h>
 
-// forward declarations
+
+//------------------------------------------------------------------------------ 
+// forwarding
+//------------------------------------------------------------------------------ 
 class KToggleAction;
+
 
 namespace Phil
 {
@@ -26,14 +31,29 @@ namespace Phil
     class CAthlet;
 }
 
-/** @todo document namespace */
+
+/******************************************************************************* 
+ * declarations
+ ******************************************************************************/  
+
+
+/** @namespace Phil This is Philippides' main namespace.
+ * All application specific data are inside this namespace.
+ */
 namespace Phil
 {
 
-/**
- * @short Application Main Window
+/** @class Philippides
+ * This id Philippides' main class.
+ * All other dialogs/widgets are created from here. This class is responsible 
+ * for the session management and the menu and toolbar. The menu and toolbar 
+ * are configured by a XML file, which contains the menuentries and the 
+ * corresponding actions to be called.
+ * 
+ * @see KMainWindow::createGUI() KXMLGUIFactory and KAction 
+ * 
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @version 0.1
+ * @date   Sun Mar 14 18:17:04 CET 2004
  */
 class Philippides : public KMainWindow
 {
@@ -71,20 +91,53 @@ protected:
 //
 //
 private:
+    /**
+     * Binds the entries and actions configured in the KXMLGUIFactory XML file
+     * to the corresponding methods.
+     */
     void setupActions();
+
+    /**
+     * Checks whether a athlet XML file exists in the user's home directory.
+     * If not, this meand that the user starts Philippides for the first time
+     * and a athlet configuration file must be created, so this methods calls
+     * the CWizard, which creates such a file and a object.
+     * If the file exists, it is used to create a CAthlet object for further
+     * use.
+     */
     void checkForAthlet();
-    CDbWidget* m_pBaseWidget;
-    CAthlet* m_pAthlet;
+    
+    CDbWidget* m_pBaseWidget;	///< The database display widget
+    CAthlet* m_pAthlet;		///< The CAthlet object used for statistics
     
 private slots:
+    /**
+     * shows/hides the toolbar depending on the state of m_toolbarAction
+     */
     void optionsShowToolbar();
+
+    /**
+     * shows/hides the statusbar depending on the state of m_statusbarAction
+     */
     void optionsShowStatusbar();
+
+    /**
+     * shows a KKeyDialog to configure key shortcuts
+     */
     void optionsConfigureKeys();
+
+    /**
+     * saves and changes the toolbar configuration
+     */
     void optionsConfigureToolbars();
+
+    /**
+     * applies the new toolbar configuration and saves the state
+     */
     void applyNewToolbarConfig();
     
-    KToggleAction* m_toolbarAction;
-    KToggleAction* m_statusbarAction;
+    KToggleAction* m_toolbarAction;	///< toggles if the toolbar is shown or not
+    KToggleAction* m_statusbarAction;	///< toggles if the statusbar is shown or not
 };
 
 

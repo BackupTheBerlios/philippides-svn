@@ -173,5 +173,47 @@ class InvalidDataException: public PhilException
 	QString m_sVariable, m_sMethod;
 };
 
+
+//------------------------------------------------------------------------------ 
+//------------------------------------------------------------------------------ 
+/** @class IOException
+ * Thic exception can be thrown if some kind of IO error occured, i.g. when
+ * serializing to disk.
+ *
+ * @author Falco Hirschenberger <hirsch@bigfoot.de> 
+ * @date Mar/23/2004 
+ */
+class IOException: public PhilException
+{
+    public:
+	/**
+	 * Constructor.
+	 *
+	 * @param sMethod [IN] - name of the method the error occured
+	 * @param sHandle [IN] - name of the file/url... 
+	 */
+	IOException( const QString& sMethod, const QString& sHandle ):
+	    m_sHandle( sHandle ),
+	    m_sMethod( sMethod )
+	    { /* EMPTY */ }
+
+	/**
+	 * default destructor
+	 */
+	virtual ~IOException() throw()
+	    { /* EMPTY */ } 
+
+	/** Inherited from baseclass, see there for details */ 
+	const char* what() const throw(){
+	    return QString( "\nEXCEPTION:\n\tSome kind of IO error occured with handle: %1"
+			    "\n\tin Method: %2\n" )
+			    .arg( m_sHandle ).arg( m_sMethod ).ascii();
+	}
+
+	QString m_sHandle, m_sMethod;
+};
+
+
+
 } //namespace
 #endif //include guard

@@ -90,7 +90,38 @@ class CAthlet
 	 * @return The XML sting containing the object's data. 
 	 **/
 	QString ToXml() const;
-	
+
+	/**
+	 * Saves the CAthlet object to disk.
+	 * The object is serialized to disk at the system's default loction with
+	 * the default name (see DTD::szAthletFile) as XML file corresponding to
+	 * szAthletDtd.
+	 *
+	 * @exception Except::IOException
+	 */
+	void ToDisk() const;
+
+	/**
+	 * The file is saved to the given path.
+	 * You should use the above function, KDE knows where to store his files to.
+	 *
+	 * @overload 
+	 * @exception Except::IOException
+	 * @param sPath		[IN] - the path and filename to save to.
+	 * @param sFirstName	[IN] - the filename to which will be written.
+	 */
+	void ToDisk(const QString& sPath, const QString& sFileName) const;
+
+    //------------------------------------------------------------------------------ 
+    // methods
+    //------------------------------------------------------------------------------ 
+	/**
+	 * Check if the XML file exists in the user's home directory.
+	 * This method uses KDE's default path and filename
+	 *
+	 * @return does the file exist?
+	 */
+	static bool FileExists();
 	
     //--------------------------------------------------------------------------
     // members

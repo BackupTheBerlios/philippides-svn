@@ -73,16 +73,17 @@ class CWizard: public CWizardBase
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-    typedef CWizard TSelf;
+	typedef CWizard TSelf;
    
     //--------------------------------------------------------------------------
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
+	* Constructor.
+	* Standard constructor
 	*
-	* @param name desc
+	* @param pParent [IN] - the parent widget
+	* @param szName [IN] - qt's internal name representation for this widget
 	**/
 	CWizard(QWidget* pParent, const char* szName);
 
@@ -92,7 +93,15 @@ class CWizard: public CWizardBase
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
-    CAthlet* GetAthlet() const;
+	/**
+	 * Return the newly created CAthlet object.
+	 * Throws an exception if called before a CAthlet object was created.
+	 *
+	 * @exception Except::GenericException
+	 *
+	 * @return the new CAthlet object
+	 */
+	CAthlet* GetAthlet() const;
 
     //------------------------------------------------------------------------------
     // operator
@@ -102,19 +111,34 @@ class CWizard: public CWizardBase
     //------------------------------------------------------------------------------
     // methods
     //------------------------------------------------------------------------------
-
-    protected:
-
-
     private slots:
+	/**
+	 * Checks all values on the second page for validity.
+	 * If all values are ok, the next btn is enabled.
+	 *
+	 * @param sText [IN] - the text of the calling edit widget.
+	 */
 	void SlotCheckPage2(const QString& sText);
+
+	/**
+	 * Sets a boolean value to true to show that the user changed the date.
+	 *
+	 * @note Can't set a valid/invalid date, so we have to check for a change.
+	 */
 	void SlotDateChanged();
+
+	/**
+	 * Creates the CAthlet object.
+	 * The object is created from the values in the editfields.
+	 *
+	 * @note Exceptions when creating a new CAthlet onject are caught here.
+	 */
 	void SlotCreateAthlet();
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	bool m_bDateChanged;
-	CAthlet* m_pAthlet;
+	bool m_bDateChanged;	///< did the user change the dateedit widget?
+	CAthlet* m_pAthlet;	///< the created CAthlet object.
     
     private:
     //------------------------------------------------------------------------------
