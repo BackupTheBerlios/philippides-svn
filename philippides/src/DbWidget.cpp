@@ -82,12 +82,8 @@ CDbWidget::CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthle
     m_pAthlet(pAthlet),
     m_bChanged(false)
 {
-    if(m_pAthlet)
-	UpdateAthletLabel();
-
     QHBoxLayout* pLayout = new QHBoxLayout(m_pHtmlFrame);
-//    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, "htmlpart", this, "htmlpart");
-    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, 0);
+    m_pHtmlPart = new KHTMLPart(m_pHtmlFrame, "htmlpart", this, "htmlpart");
     m_pHtmlPart->view()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     kdDebug() << m_pHtmlPart->name() << endl; 
     pLayout->addWidget(m_pHtmlPart->view());
@@ -97,6 +93,9 @@ CDbWidget::CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthle
     connect((QObject*)EditBtn, SIGNAL(clicked()), SLOT(SlotEditRun()));
     connect((QObject*)RunListView, SIGNAL(selectionChanged(QListViewItem*)), 
 				   SLOT(SlotSelected(QListViewItem*)));
+    
+    if(m_pAthlet)
+	UpdateAthletLabel();
 }
 
 CDbWidget::~CDbWidget()
@@ -260,8 +259,7 @@ void CDbWidget::UpdateAthletLabel()
     xmlDocDumpMemory(pHtml, &pString, &nSize);    
     kdDebug() << "+" << endl;
     m_pHtmlPart->begin();
-    m_pHtmlPart->write("test");
-   // m_pHtmlPart->write(QString((char*)pString));
+    m_pHtmlPart->write(QString((char*)pString));
     m_pHtmlPart->end();
     
     xsltFreeStylesheet(pStylesheet);
