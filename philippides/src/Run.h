@@ -92,8 +92,8 @@ class CRun
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
-	QString XmlHeader() const;
-	QString XmlFooter() const;
+	static QString XmlHeader();
+	static QString XmlFooter();
 
 	QString ToXml() const;
 

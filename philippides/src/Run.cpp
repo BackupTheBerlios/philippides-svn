@@ -67,7 +67,7 @@ CRun::~CRun()
 //------------------------------------------------------------------------------
 // accessors
 //------------------------------------------------------------------------------
-QString CRun::XmlHeader() const
+QString CRun::XmlHeader()
 {
     QString sXml;
     QTextStream stream( &sXml, IO_WriteOnly );
@@ -79,7 +79,7 @@ QString CRun::XmlHeader() const
 return sXml;
 }
 
-QString CRun::XmlFooter() const
+QString CRun::XmlFooter()
 {
     return QString( "</rundb>\n" );
 }

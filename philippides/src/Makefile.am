@@ -29,7 +29,8 @@ philippides_SOURCES = 	main.cpp \
 			philippides.cpp \
 			Athlet.cpp \
 			Run.cpp \
-			DbWidgetBase.ui
+			DbWidgetBase.ui \
+			WizardBase.ui
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 philippides_LDADD = $(LIB_KDEUI)
