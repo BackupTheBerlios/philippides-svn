@@ -49,7 +49,7 @@ namespace Phil
 CAthletParser::CAthletParser(CAthlet* pAthlet):
     m_pAthlet(pAthlet)
 {
-
+    /* EMPTY */ 
 }
 
 CAthletParser::~CAthletParser()

@@ -21,8 +21,8 @@
 // xyzlib headers
 //------------------------------------------------------------------------------
 // qt includes
-#include <qstring.h>
 #include <qdatetime.h>
+#include <qptrlist.h>
 
 //------------------------------------------------------------------------------
 // local headers
@@ -32,7 +32,8 @@
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-
+// qt forwarding
+class CRun;
 
 //------------------------------------------------------------------------------
 // macros
@@ -74,8 +75,14 @@ class CRun
     //--------------------------------------------------------------------------
     // structors
     //--------------------------------------------------------------------------
+	/**
+	 * Default constructor
+	 */
+	CRun();
+	
+	
 	/** 
-	* default constructor
+	* Constructor
 	*
 	* @exception Except::InvalidDataException
 	*
@@ -107,15 +114,69 @@ class CRun
 	static QString XmlFooter();
 
 	/**
+	 * Serialize a QPtrList<CRun> to disk.
+	 * The database is written to KDE's default location for writing XML data.
+	 * The file will have the name in DTD::szRunFile with the DTD in DTD::szAthletDtd.
+	 * 
+	 * @param runList [IN] - The database to be serialized
+	 */
+	static void ToDisk(QPtrList<CRun>& runList);
+
+	/**
+	 * The database is serialized to the given path with the given filename.
+	 *
+	 * @overload
+	 * @exception Except::IOException
+	 * @param sPath [IN] - the path to store the xml file in.
+	 * @param sFileName [IN] - the filename the database gets.
+	 * @param runList [IN] - the database to store.
+	 */
+	static void ToDisk(const QString& sPath, 
+			   const QString& sFileName,
+		           QPtrList<CRun>& runList);
+
+	/**
+	 * Loads and creates a QPtrList<CRun> from disk.
+	 * The database is loaded from KDE's default location. KDE searches for a file
+	 * with the name stored in DTD::szRunFile.
+	 *
+	 * @return the new rundatabase
+	 */
+	static QPtrList<CRun>* FromDisk();
+
+	/**
+	 * The database is loaded from the given path with the given filename.
+	 *
+	 * @overload
+	 * @exception Except::IOException
+	 * @param sPath [IN] - the path to load the xml file from
+	 * @param sFileName [IN] - the databases' filename
+	 * @return the new rundatabase
+	 */
+	static QPtrList<CRun>* FromDisk(const QString& sPath, const QString& sFileName);
+	
+	/**
 	 * Convert the object to an XML string.
 	 * 
 	 * @note No XML header and footer will be included, you must call the static 
 	 *	 methods XmlHeader() and XmlFooter() to get these.
 	 *
+	 * @exception Except::InvalidDataException
 	 * @return the objects XML string representation
 	 */
 	QString ToXml() const;
-
+	
+    //------------------------------------------------------------------------------ 
+    // methods
+    //------------------------------------------------------------------------------ 
+	/**
+	 * Check if the XML file exists in the user's home directory.
+	 * This method uses KDE's default path and filename
+	 *
+	 * @return does the file exist?
+	 */
+	static bool FileExists();
+	
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
@@ -127,6 +188,16 @@ class CRun
 	EnImpression m_EnImpression;  ///< the athlet's feeling while running
 	QString m_sComment;           ///< space for personal notes
 };
+
+/**
+ * equality operator
+ */
+bool operator==(const CRun& a, const CRun& b);
+
+/**
+ * inequality operator
+ */
+bool operator!=(const CRun& a, const CRun& b);
 
 }; //namespace
 

@@ -105,6 +105,13 @@ void Philippides::checkForAthlet()
     else{
 	//TODO: create CAthlet object from file.
 	kdDebug() << "Athlet file found!" << endl;
+	try{
+	    m_pAthlet = CAthlet::FromDisk();
+	}
+	catch(Except::PhilException& e)
+	{
+	    kdDebug() << e.what() << endl;
+	}
     }
 
 }

@@ -69,7 +69,7 @@ class CAthletParser: public QXmlDefaultHandler
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-    typedef CAthletParser TSelf;
+	typedef CAthletParser TSelf;
    
     //--------------------------------------------------------------------------
     // structors
@@ -103,7 +103,7 @@ class CAthletParser: public QXmlDefaultHandler
 	 *
 	 * @exception Except::InvalidDataException
 	 * @param sElementName [IN] - the name of the starting tag
-	 * @param attributies [IN] - the tag's attributes
+	 * @param attributes [IN] - the tag's attributes
 	 * @return successful?
 	 */
 	bool startElement(const QString& /* EMPTY */, 
@@ -134,9 +134,9 @@ class CAthletParser: public QXmlDefaultHandler
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-    CAthlet* m_pAthlet;		///< The handled CAthlet object (not owned)
-    QString m_sVersion;		///< The DTD version (for use in later versions)
-    QString m_sParsedText;	///< this stores the parsed text between the tags
+	CAthlet* m_pAthlet;		///< The handled CAthlet object (not owned)
+	QString m_sVersion;		///< The DTD version (for use in later versions)
+	QString m_sParsedText;		///< this stores the parsed text between the tags
 
     
     private:

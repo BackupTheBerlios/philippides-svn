@@ -10,7 +10,8 @@ noinst_HEADERS = philippides.h \
 		 Exceptions.h \
 		 DbWidget.h \
 		 Wizard.h \
-		 AthletParser.h
+		 AthletParser.h \
+		 RunParser.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -36,7 +37,8 @@ philippides_SOURCES = 	main.cpp \
 			DbWidget.cpp \
 			WizardBase.ui \
 			Wizard.cpp \
-			AthletParser.cpp
+			AthletParser.cpp \
+			RunParser.cpp
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 philippides_LDADD = $(LIB_KDEUI)

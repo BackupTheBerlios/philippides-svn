@@ -177,7 +177,7 @@ CAthlet* CAthlet::FromDisk(const QString& sPath, const QString& sFileName)
 
     //------------------------------------------------------------------------------ 
     // here I create the new CAthlet object, a pointer to it is given to the parser
-    // to fill it with values, this class keeps the ownership ob the object and 
+    // to fill it with values, this class keeps the ownership of the object and 
     // discards it later when returning from this method.
     //------------------------------------------------------------------------------ 
 

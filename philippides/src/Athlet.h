@@ -113,7 +113,7 @@ class CAthlet
 	 * @overload 
 	 * @exception Except::IOException
 	 * @param sPath		[IN] - the path and filename to save to.
-	 * @param sFirstName	[IN] - the filename to which will be written.
+	 * @param sFileName	[IN] - the filename to which will be written.
 	 */
 	void ToDisk(const QString& sPath, const QString& sFileName) const;
 
@@ -132,7 +132,7 @@ class CAthlet
 	 * @overload
 	 * @exception Except::IOException
 	 * @param sPath		[IN] - the path and filename to save to.
-	 * @param sFirstName	[IN] - the filename to which will be written.
+	 * @param sFileName	[IN] - the filename to which will be written.
 	 */ 
 	static CAthlet* FromDisk(const QString& sPath, const QString& sFileName);
 
