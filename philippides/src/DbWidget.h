@@ -196,8 +196,8 @@ class CDbWidget: public CDbWidgetBase
 	const CAthlet* m_pAthlet;	///< The user's CAthlet representation
 	bool m_bChanged;		///< Flag which marks if the database had been 
 					///< changed since last save.
-	KHTMLPart   *m_pAthletHtmlPart,
-		    *m_pRunHtmlPart;
+	KHTMLPart   *m_pAthletHtmlPart, ///< HTMLPart which displays the athlet info.
+		    *m_pRunHtmlPart;	///< HTMLPart which displays the run info.
     private:
 	/**
 	 * Updates all CAthlet related labels with m_pAthlet's values.

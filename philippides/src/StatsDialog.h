@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file StatsDialog.h
- *
- * short description.
- * brief description.
+ * This file contains the definition of the class CStatsDialog
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/18/2004
@@ -50,9 +48,7 @@ namespace Phil
 {
 
 /** @class CStatsDialog
- *
- * short description.
- * brief description.
+ * Thic class provides a dialog which can show different kindas of statistics.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/18/2004
@@ -71,41 +67,36 @@ class CStatsDialog: public CStatsDialogBase
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
+	* Standard constructor.
 	*
-	* @param name desc
+	* @param pRunList   [IN] - The list with the CRun objects to create the stats
+	*			    from.
+	* @param pParent    [IN] - the dialog's parent widget.
+	* @param szName	    [IN] - Qt's internal name representation of the object/class.
 	**/
 	CStatsDialog(CRunPtrList* pRunList, QWidget* pParent, const char* szName);
 
 	/** default destructor */
 	virtual ~CStatsDialog();
 
-    //--------------------------------------------------------------------------
-    // accessors
-    //--------------------------------------------------------------------------
-
-
-    //------------------------------------------------------------------------------
-    // operator
-    //------------------------------------------------------------------------------
-
-
-    //------------------------------------------------------------------------------
-    // methods
-    //------------------------------------------------------------------------------
-		
-    protected:
 
     private slots:
+	/**
+	 * Creates all the statistics.
+	 * The data is stored in the vector m_pData.
+	 */
 	void SlotCreateStats();
 
     private:
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	CRunPtrList* m_pRunList;
-	std::vector<unsigned int>* m_pData;
+	CRunPtrList* m_pRunList;		///< The list with all the CRun objects.
+						///< This is owned here and will be deleted 
+						///< here!!
+						
+	std::vector<unsigned int>* m_pData;	///< The created statistics are stored here.
+						///< Owned and deleted here!!
 
     private:
     //------------------------------------------------------------------------------

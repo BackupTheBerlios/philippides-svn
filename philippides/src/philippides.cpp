@@ -58,7 +58,8 @@ namespace Phil
 Philippides::Philippides():
     KMainWindow( 0, "Philippides" ),
     m_pAthlet( 0 ),
-    m_pStatsDialog(0)
+    m_pStatsDialog(0),
+    m_pTrackEditorDialog(0)
 {
 
     setupActions();
@@ -189,7 +190,11 @@ void Philippides::setupActions()
 
     m_pStatsAction = new KToggleAction( i18n("View statsdialog"), "catagory", KShortcut("Shift+S"), 
 					this, SLOT( SlotShowStatsDialog()), 
-					actionCollection(), "view_stats"); 
+					actionCollection(), "view_stats");
+
+    m_pTrackEditorAction = new KToggleAction( i18n("View Track Editor"), "signature", 
+					KShortcut("Shift+T"), this, SLOT( SlotShowTrackEditor()),
+					actionCollection(), "view_trackeditor");
 }
 
 void Philippides::optionsConfigureKeys()
@@ -262,6 +267,19 @@ void Philippides::SlotShowStatsDialog()
 							      this, "statsdialog");
 	// we use a non-modal dialog.
 	m_pStatsDialog->show();
+    }
+}
+
+void Philippides::SlotShowTrackEditor()
+{
+
+    if(m_pTrackEditorAction->isChecked() && m_pTrackEditorDialog){
+	m_pTrackEditorDialog->close();
+    }
+    else{
+	if(!m_pTrackEditorDialog) m_pTrackEditorDialog = new CTrackEditorDialog(this,
+								"trackeditordialog");
+	m_pTrackEditorDialog->show();
     }
 }
 

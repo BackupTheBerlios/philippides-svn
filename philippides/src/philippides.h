@@ -19,6 +19,9 @@
 #include <kmainwindow.h>
 
 
+// local includes
+#include "TrackEditorDialog.h"
+
 //------------------------------------------------------------------------------ 
 // forwarding
 //------------------------------------------------------------------------------ 
@@ -122,8 +125,10 @@ private:
     CAthlet* m_pAthlet;			///< The CAthlet object used for statistics
     KToggleAction* m_toolbarAction;	///< toggles if the toolbar is shown or not
     KToggleAction* m_statusbarAction;	///< toggles if the statusbar is shown or not
-    KToggleAction* m_pStatsAction;	///< toggles if th stats dialog is shown.   
+    KToggleAction* m_pStatsAction;	///< toggles if the stats dialog is shown.  
+    KToggleAction* m_pTrackEditorAction; ///< toggles if the track editor is shown.
     CStatsDialog* m_pStatsDialog;	///< dialog showing some statistics
+    CTrackEditorDialog* m_pTrackEditorDialog; ///< dialog which let you edit custom tracks
     
 private slots:
     /**
@@ -160,6 +165,11 @@ private slots:
      * Show a CStatsDialog depending on the state of m_pStatsAction.
      */
     void SlotShowStatsDialog();
+
+    /**
+     * Show the CTrackEditorDialog on the state of m_pTrackEditoAction.
+     */
+    void SlotShowTrackEditor();
 };
 
 

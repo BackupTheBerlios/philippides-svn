@@ -17,7 +17,9 @@ noinst_HEADERS = philippides.h \
 		 RunListViewItem.h \
 		 StatsDialog.h \
 		 StatsWidget.h \
-		 RunPtrList.h
+		 RunPtrList.h \
+		 TrackEditorDialog.h \
+		 MapWidget.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -51,7 +53,11 @@ philippides_SOURCES = 	main.cpp \
 			StatsDialogBase.ui \
 			StatsDialog.cpp \
 			StatsWidget.cpp \
-			RunPtrList.cpp
+			RunPtrList.cpp \
+			TrackEditorDialogBase.ui \
+			TrackEditorDialog.cpp \
+			MapWidget.cpp
+			
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)  
  

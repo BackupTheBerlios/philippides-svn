@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file RunPtrList.h
- *
- * short description.
- * brief description.
+ * This file contains the definition of the class CRunPtrList.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/19/2004
@@ -49,9 +47,9 @@ namespace Phil
 {
 
 /** @class CRunPtrList
- *
- * short description.
- * brief description.
+ * This class implements a pointer list of CRun objects.
+ * The method compareItems is overwritten to make the sorting of the list
+ * possible.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/19/2004
@@ -70,38 +68,18 @@ class CRunPtrList: public QPtrList<CRun>
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
-	*
-	* @param name desc
+	* default constructor
 	**/
 	CRunPtrList();
 
 	/** default destructor */
 	virtual ~CRunPtrList();
 
-    //--------------------------------------------------------------------------
-    // accessors
-    //--------------------------------------------------------------------------
-
-
-    //------------------------------------------------------------------------------
-    // operator
-    //------------------------------------------------------------------------------
-
-
-    //------------------------------------------------------------------------------
-    // methods
-    //------------------------------------------------------------------------------
 
     protected:
-	int compareItems(CRunPtrList::Item item1, CRunPtrList::Item item2);
+	/** Inherited from baseclass, see there for details */ 
+	inline int compareItems(CRunPtrList::Item item1, CRunPtrList::Item item2);
 
-    private:
-    //------------------------------------------------------------------------------
-    // members
-    //------------------------------------------------------------------------------
-	    
     private:
     //------------------------------------------------------------------------------
     // implementation protection

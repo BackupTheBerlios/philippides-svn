@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file StatsWidget.h
- *
- * short description.
- * brief description.
+ * This file contains the definition of the class CStatsWidget
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/18/2004
@@ -48,9 +46,10 @@ namespace Phil
 {
 
 /** @class CStatsWidget
- *
- * short description.
- * brief description.
+ * This class provides a widget with can display bar graphs of given values.
+ * The drawn values are gained from the vector given in SetData. The bars 
+ * are labeled with the appropriate day/week/month name/number which is 
+ * specified with the EnDrawMode parameter in SetData.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/18/2004
@@ -77,10 +76,10 @@ class CStatsWidget: public QFrame
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
+	* standard constructor
 	*
-	* @param name desc
+	* @param pParent    [IN] - The widget's parent widget.
+	* @param szName	    [IN] - Qt's internal name representation.
 	**/
 	CStatsWidget(QWidget* pParent, const char* szName);
 
@@ -90,6 +89,12 @@ class CStatsWidget: public QFrame
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
+	/**
+	 * Set the data to display  and the draw mode.
+	 *
+	 * @param pData [IN] - The data to display.
+	 * @param mode	[IN] - The draw mode (day, week, monthe, year)
+	 */
 	void SetData(const std::vector<unsigned int>* pData, EnDrawMode mode) {
 			m_pData = pData;
 			m_EnDrawMode = mode;
@@ -110,18 +115,24 @@ class CStatsWidget: public QFrame
 
 
     private:
+	/** Inherited from baseclass, see there for details */ 
 	void paintEvent(QPaintEvent* p);
+
+	/** helper function to draw the grid. Called by paintEvent */
 	void DrawGrid(const QStringList& labelList);
+
+	/** helper function to draw the bars. Called by paintEvent */
 	void DrawBars();
+
+	/** helper function to draw the data. Called by paintEvent */
 	void DrawData();
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	EnDrawMode m_EnDrawMode;	    
-	const std::vector<unsigned int>* m_pData;
-
-	unsigned int m_nLeftBorder;
-	unsigned int m_nBottomBorder;
+	EnDrawMode m_EnDrawMode;		    ///< The draw mode \see EnDrawMode.
+	const std::vector<unsigned int>* m_pData;   ///< The data to display. Not Owned.
+	unsigned int m_nLeftBorder;		    ///< The left border of the draw area.
+	unsigned int m_nBottomBorder;		    ///< The bottom border of the draw area.
     private:
     //------------------------------------------------------------------------------
     // implementation protection

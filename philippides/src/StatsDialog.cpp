@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file StatsDialog.cpp
- * short description.
- * brief description.
+ * This file contains the implementation of the class CStatsDialog
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Apr/18/2004
@@ -10,11 +9,6 @@
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
 //******************************************************************************
-
-
-//------------------------------------------------------------------------------
-// STL headers
-//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 // xyzlib headers
@@ -85,7 +79,9 @@ void CStatsDialog::SlotCreateStats()
     CRun* pRun=0;
 
     m_pRunList->sort();
-    
+   
+
+    // TODO: look if this method can be made easyer
     if(weekBtn->isOn()){
 	m_pData = new std::vector<unsigned int>(7, 0);
 	for(pRun = m_pRunList->first(); pRun; pRun = m_pRunList->next()){

@@ -8,6 +8,7 @@
   </Menu>
   <Menu name="View" noMerge="1"><text>&amp;View</text>
     <Action name="view_stats"/>
+    <Action name="view_trackeditor"/>
   </Menu>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="options_show_toolbar"/>
@@ -22,6 +23,7 @@
 <ToolBar name="mainToolBar" noMerge="1"><text>Main Toolbar</text>
     <Action name="file_save"/>
     <Action name="view_stats"/>
+    <Action name="view_trackeditor"/>
     <Action name="help"/>
 </ToolBar>
 </kpartgui>
