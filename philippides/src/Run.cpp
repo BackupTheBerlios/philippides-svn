@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file Run.cpp
- * short description.
- * brief description.
+ * CRun implementation.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date 16.3.2004
@@ -89,7 +88,7 @@ QString CRun::ToXml() const
     QString sXml;
     QTextStream stream(&sXml, IO_WriteOnly);
 
-    // check for minimal values which must be existant to generate a run entry
+    // check for minimal values which must exist to generate a run entry
     if(!m_Date.isValid() || m_Date.isNull())
 	throw Except::InvalidDataException("CRun::ToXml", "m_Date");
 
