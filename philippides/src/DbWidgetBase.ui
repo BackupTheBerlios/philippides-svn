@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>817</width>
-            <height>634</height>
+            <height>636</height>
         </rect>
     </property>
     <property name="caption">
@@ -1273,6 +1273,8 @@
 <slots>
     <slot access="protected" specifier="pure virtual">SlotNewRun()</slot>
     <slot access="protected" specifier="pure virtual">SlotSelected(QListViewItem*)</slot>
+    <slot access="protected" specifier="pure virtual">SlotDelRun()</slot>
+    <slot access="protected" specifier="pure virtual">SlotEditRun()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

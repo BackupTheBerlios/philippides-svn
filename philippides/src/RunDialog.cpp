@@ -56,6 +56,24 @@ CRunDialog::CRunDialog(QWidget* pParent, const char* szName):
     connect((QWidget*)OkBtn, SIGNAL(clicked()), SLOT(SlotCreateRun()));
 }
 
+
+CRunDialog::CRunDialog(const CRun* pRun, QWidget* pParent, const char* szName):
+    CRunDialogBase(pParent, szName),
+    m_pRun(0)
+{
+    if(!pRun) throw Except::InvalidDataException(__PRETTY_FUNCTION__, "pRun");
+
+    DateEdit->setDate(pRun->m_Date);
+    TimeEdit->setTime(pRun->m_Time);
+    LengthBox->setValue(pRun->m_nLength);
+    PulseBox->setValue(pRun->m_nPulse);
+    WeatherBox->setCurrentItem(static_cast<int>(pRun->m_EnWeather)+1);
+    ImpressionBox->setCurrentItem(static_cast<int>(pRun->m_EnImpression)+1);
+    CommentEdit->setText(pRun->m_sComment);
+    
+    connect((QWidget*)OkBtn, SIGNAL(clicked()), SLOT(SlotCreateRun()));
+}
+
 CRunDialog::~CRunDialog()
 {
 
@@ -67,7 +85,7 @@ CRunDialog::~CRunDialog()
 inline CRun* CRunDialog::GetRun()
 {
     if(!m_pRun)
-	throw Except::GenericException("CRunDialog::GetRun()",
+	throw Except::GenericException(__PRETTY_FUNCTION__,
 		"Trying to get a pointer to a non existent object (null-ptr)!");
 
     return m_pRun;

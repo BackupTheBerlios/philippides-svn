@@ -33,6 +33,7 @@
 #include <kstandarddirs.h>
 #include <ksavefile.h>
 #include <kdebug.h>
+#include <kmessagebox.h>
 
 // local includes
 #include "Exceptions.h"
@@ -137,10 +138,27 @@ void Philippides::checkForRunDb()
 	for(pRun = pList->first(); pRun; pRun = pList->next()){
 	    m_pBaseWidget->SlotNewRun( pRun );
 	}
+	
+	// set not changed because we read the database and no data has been changed
+	// the method SlotNewRun sets changed to true, so we have to set it to false
+	m_pBaseWidget->SetChanged(false);
     }
     catch(Except::PhilException& e){
 	std::cerr << e.what() << std::endl;
     }
+}
+
+
+bool Philippides::queryClose()
+{
+    if(m_pBaseWidget->IsChanged() &&
+       KMessageBox::questionYesNo(this, 
+	   i18n("Your database is unsaved, do you wanna save it?"),
+	   i18n("Unsaved data...")) == KMessageBox::Yes){
+	SlotSave();
+    }
+    
+    return true;
 }
 
 void Philippides::saveProperties( KConfig* )

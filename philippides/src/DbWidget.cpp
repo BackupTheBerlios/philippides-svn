@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file DbWidget.cpp
- * short description.
- * brief description.
+ * This file contains the implementation of the class CDbWidget
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date 23.3.2004
@@ -31,8 +30,10 @@
 
 
 // kde includes
+#include <klocale.h>
 #include <kdebug.h>
 #include <klistview.h>
+#include <kmessagebox.h>
 
 
 //------------------------------------------------------------------------------
@@ -61,12 +62,15 @@ namespace Phil
 //------------------------------------------------------------------------------
 CDbWidget::CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthlet):
     CDbWidgetBase( pParent, szName ),
-    m_pAthlet(pAthlet)
+    m_pAthlet(pAthlet),
+    m_bChanged(false)
 {
     if(m_pAthlet)
 	UpdateAthletLabel();
 
     connect((QObject*)AddBtn, SIGNAL(clicked()), SLOT(SlotNewRun()));
+    connect((QObject*)DelBtn, SIGNAL(clicked()), SLOT(SlotDelRun()));
+    connect((QObject*)EditBtn, SIGNAL(clicked()), SLOT(SlotEditRun()));
     connect((QObject*)RunListView, SIGNAL(selectionChanged(QListViewItem*)), 
 				   SLOT(SlotSelected(QListViewItem*)));
 }
@@ -114,6 +118,41 @@ void CDbWidget::SlotNewRun(CRun* pRun)
 {
     QListViewItem* pItem = new CRunListViewItem((QListView*)RunListView, pRun);
     RunListView->setSelected(pItem, true);
+    m_bChanged = true;
+}
+
+void CDbWidget::SlotDelRun()
+{
+    CRunListViewItem* pItem = static_cast<CRunListViewItem*>(RunListView->selectedItem());
+    if(!pItem){
+	KMessageBox::sorry(this,i18n("No item selected"), i18n( "Sorry..."));
+	return;
+    }
+    RunListView->takeItem(pItem);
+    m_bChanged = true;
+}
+
+void CDbWidget::SlotEditRun()
+{
+    CRunListViewItem* pItem = static_cast<CRunListViewItem*>(RunListView->selectedItem());
+    if(!pItem){
+	KMessageBox::sorry(this,i18n("No item selected"), i18n( "Sorry..."));
+	return;
+    }
+    
+    try{
+	CRunDialog runDlg( pItem->GetRun(), this, "rundialog");
+
+	if(runDlg.exec() == QDialog::Rejected)
+	    return;
+
+	RunListView->takeItem(pItem);
+	SlotNewRun(runDlg.GetRun());
+    }
+    catch(Except::PhilException& e)
+    {
+	kdDebug() << e.what() << endl;
+    }
 }
 
 void CDbWidget::SlotSelected(QListViewItem* pItem)
@@ -143,6 +182,8 @@ void CDbWidget::SlotSelected(QListViewItem* pItem)
 
 void CDbWidget::SlotSaveDatabase()
 {
+    if(!m_bChanged) return;
+	
     QPtrList<Phil::CRun> list;
     CRunListViewItem* pItem = static_cast<CRunListViewItem*>(RunListView->firstChild());
     
@@ -153,6 +194,7 @@ void CDbWidget::SlotSaveDatabase()
 
     try{
 	CRun::ToDisk(list);
+	m_bChanged = false;
     }
     catch(Except::PhilException& e){
 	std::cerr << e.what()  << std::endl;

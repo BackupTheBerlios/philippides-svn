@@ -78,6 +78,9 @@ class CRunDialog: public CRunDialogBase
 	* @param name desc
 	**/
 	CRunDialog(QWidget* pParent, const char* szName);
+	
+	
+	CRunDialog(const CRun* pRun, QWidget* pParent, const char* szName);
 
 	/** default destructor */
 	virtual ~CRunDialog();

@@ -84,12 +84,12 @@ protected:
      */
     void readProperties(KConfig *);
 
-///    @todo implement these!
-//    bool queryClose();
-//
-//    bool queryExit();
-//
-//
+    /**
+     * Called before the application exits, here we look if the database had been
+     * changed. If it had been changed, we save it to disk and exit the application
+     */
+    bool queryClose();
+
 private:
     /**
      * Binds the entries and actions configured in the KXMLGUIFactory XML file
