@@ -223,5 +223,19 @@ void CDbWidget::UpdateAthletLabel()
     MorningPulseLabel->setText(QString::number(m_pAthlet->m_nMorningPulse)+"/s");
 }
 
+const QPtrList<CRun>* CDbWidget::GetRunList() const
+{
+    QPtrList<CRun>* pRunList = new QPtrList<CRun>();
+    
+    CRunListViewItem* pItem = static_cast<CRunListViewItem*>(RunListView->firstChild());
+
+    while(pItem){
+	pRunList->append(pItem->GetRun());
+	pItem = static_cast<CRunListViewItem*>(pItem->itemBelow());
+    }
+
+return pRunList;
+}
+
 };//namespace
 

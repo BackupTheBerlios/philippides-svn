@@ -250,6 +250,11 @@ bool operator!=(const CRun& a, const CRun& b)
     return !(a==b);
 }
 
+bool operator<(const CRun& a, const CRun& b)
+{
+    return a.m_Date < b.m_Date;
+}
+
 //------------------------------------------------------------------------------
 // methods
 //------------------------------------------------------------------------------

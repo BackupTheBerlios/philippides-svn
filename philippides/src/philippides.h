@@ -29,6 +29,7 @@ namespace Phil
 {
     class CDbWidget;
     class CAthlet;
+    class CStatsDialog;
 }
 
 
@@ -121,7 +122,8 @@ private:
     CAthlet* m_pAthlet;			///< The CAthlet object used for statistics
     KToggleAction* m_toolbarAction;	///< toggles if the toolbar is shown or not
     KToggleAction* m_statusbarAction;	///< toggles if the statusbar is shown or not
-    
+    KToggleAction* m_pStatsAction;	///< toggles if th stats dialog is shown.   
+    CStatsDialog* m_pStatsDialog;	///< dialog showing some statistics
     
 private slots:
     /**
@@ -153,6 +155,11 @@ private slots:
      * called when the "save" menu entry or toolbar button is pressed
      */
     void SlotSave();
+
+    /**
+     * Show a CStatsDialog depending on the state of m_pStatsAction.
+     */
+    void SlotShowStatsDialog();
 };
 
 

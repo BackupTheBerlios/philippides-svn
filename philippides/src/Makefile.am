@@ -13,7 +13,9 @@ noinst_HEADERS = philippides.h \
 		 AthletParser.h \
 		 RunParser.h \
 		 RunDialog.h \
-		 RunListViewItem.h
+		 RunListViewItem.h \
+		 StatsDialog.h \
+		 StatsWidget.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -43,7 +45,10 @@ philippides_SOURCES = 	main.cpp \
 			RunParser.cpp \
 			RunDialogBase.ui \
 			RunDialog.cpp \
-			RunListViewItem.cpp
+			RunListViewItem.cpp \
+			StatsDialogBase.ui \
+			StatsDialog.cpp \
+			StatsWidget.cpp
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 philippides_LDADD = $(LIB_KDEUI)

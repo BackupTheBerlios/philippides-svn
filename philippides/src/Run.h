@@ -199,6 +199,13 @@ bool operator==(const CRun& a, const CRun& b);
  */
 bool operator!=(const CRun& a, const CRun& b);
 
+/**
+ * less operator.
+ * Needed for sorting by date.
+ */
+bool operator<(const CRun& a, const CRun& b);
+
+
 }; //namespace
 
 #endif//__PHIL_RUN_H__

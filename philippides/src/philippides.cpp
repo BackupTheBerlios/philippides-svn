@@ -34,6 +34,7 @@
 #include <ksavefile.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
+#include <kshortcut.h>
 
 // local includes
 #include "Exceptions.h"
@@ -42,6 +43,7 @@
 #include "Wizard.h"
 #include "Athlet.h"
 #include "Run.h"
+#include "StatsDialog.h"
 
 /*******************************************************************************
  * implementation
@@ -55,7 +57,8 @@ namespace Phil
 //------------------------------------------------------------------------------
 Philippides::Philippides():
     KMainWindow( 0, "Philippides" ),
-    m_pAthlet( 0 )
+    m_pAthlet( 0 ),
+    m_pStatsDialog(0)
 {
 
     setupActions();
@@ -183,6 +186,10 @@ void Philippides::setupActions()
 
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys() ), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars() ), actionCollection() );
+
+    m_pStatsAction = new KToggleAction( i18n("View statsdialog"), "catagory", KShortcut("Shift+S"), 
+					this, SLOT( SlotShowStatsDialog()), 
+					actionCollection(), "view_stats"); 
 }
 
 void Philippides::optionsConfigureKeys()
@@ -241,6 +248,21 @@ void Philippides::optionsShowStatusbar()
 	statusBar()->show();
     else
 	statusBar()->hide();
+}
+
+
+void Philippides::SlotShowStatsDialog()
+{
+    // is the dialog already open?
+    if( m_pStatsAction->isChecked() && m_pStatsDialog ){
+	m_pStatsDialog->close();
+    }
+    else{
+	if(!m_pStatsDialog) m_pStatsDialog = new CStatsDialog(m_pBaseWidget->GetRunList(), 
+							      this, "statsdialog");
+	// we use a non-modal dialog.
+	m_pStatsDialog->show();
+    }
 }
 
 }; // namespace

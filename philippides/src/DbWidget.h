@@ -122,8 +122,11 @@ class CDbWidget: public CDbWidgetBase
 	 *
 	 * @param bChanged [IN] - set the database status to changed/not changed.
 	 */
-	void SetChanged(bool bChanged) {m_bChanged = bChanged;} 
-	    
+	void SetChanged(bool bChanged) {m_bChanged = bChanged;}
+
+
+	const QPtrList<CRun>* GetRunList() const;
+	
     //------------------------------------------------------------------------------
     // operator
     //------------------------------------------------------------------------------

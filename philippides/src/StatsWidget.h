@@ -1,27 +1,30 @@
 //******************************************************************************
-/** @file RunParser.h
- *  This file contains the definition of the class CRunParser
+/** @file StatsWidget.h
+ *
+ * short description.
+ * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date Mar/28/2004
+ * @date Apr/18/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
 //******************************************************************************
 
-#ifndef __PHIL_RUN_PARSER_H__
-#define __PHIL_RUN_PARSER_H__
-
+#ifndef __PHIL_STATS_WIDGET_H__
+#define __PHIL_STATS_WIDGET_H__
 
 //------------------------------------------------------------------------------
 // STL headers
 //------------------------------------------------------------------------------
 
+
 //------------------------------------------------------------------------------
 // xyzlib headers
 //------------------------------------------------------------------------------
-// qt includes
-#include <qxml.h>
+// qt headers
+#include <qframe.h>  // baseclass
+#include <qstringlist.h>
 
 
 //------------------------------------------------------------------------------
@@ -32,12 +35,7 @@
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-// local forwarding
-namespace Phil
-{
-    class CRun;
-}
-    
+
 
 //------------------------------------------------------------------------------
 // macros
@@ -50,44 +48,44 @@ namespace Phil
 namespace Phil
 {
 
-/** @class CRunParser
- * This class can parse serialized CRun objects.
- * The class parses a XML file which must be compilant to the DTD defined
- * in DTD::szRunDtd. It does \b NOT create a QPtrList<CRun> object, it fills
- * the list given in the constructor. But the CRun objects pushed into the list
- * are created by this class.
- * 
- * \note This class is not responsible for the QPtrList<CRun> object it fills,
- *	 the calling class must care about it's memory.
+/** @class CStatsWidget
  *
- * \note This class discards the possession of the created CRun objects
+ * short description.
+ * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date Mar/28/2004
+ * @date Apr/18/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
-class CRunParser: public QXmlDefaultHandler
+class CStatsWidget: public QFrame
 {
     public:
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-	typedef CRunParser TSelf;
+    typedef CStatsWidget TSelf;
+    
+    enum EnDrawMode{
+	    WEEK_MODE,
+	    MONTH_MODE,
+	    YEAR_MODE,
+	    FREE_MODE};
+
    
     //--------------------------------------------------------------------------
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* Constructor.
-	* The given parameter list is filled with the parsed values
+	* short method description.
+	* brief method description.
 	*
-	* @param pRunList [IN/OUT] - the list to be filled with CRun objects
+	* @param name desc
 	**/
-	CRunParser(QPtrList<CRun>* pRunList);
+	CStatsWidget(QWidget* pParent, const char* szName);
 
 	/** default destructor */
-	virtual ~CRunParser();
+	virtual ~CStatsWidget();
 
     //--------------------------------------------------------------------------
     // accessors
@@ -102,57 +100,27 @@ class CRunParser: public QXmlDefaultHandler
     //------------------------------------------------------------------------------
     // methods
     //------------------------------------------------------------------------------
-	/**
-	 * This method is called when a new tag starts while parsing.
-	 *
-	 * @exception Except::InvalidDataException
-	 * @param sElementName [IN] - the name of the starting tag
-	 * @param attributes [IN] - the tag's attributes
-	 * @return successful?
-	 */
-	bool startElement(const QString& /* EMPTY */, 
-			  const QString& /* EMPTY */,
-			  const QString& sElementName,
-			  const QXmlAttributes& attributes);
 
-	/**
-	 * This method is called when a end tag is parsed.
-	 *
-	 * @param sElementName [IN] - the name of the starting tag
-	 * @return successful?
-	 */
-	bool endElement(const QString& /* EMPTY */, 
-			const QString& /* EMPTY */, 
-			const QString& sElementName);
-
-	/**
-	 * This method reads strings between tags.
-	 * The strings are evaluated in endElement().
-	 *
-	 * @param sText [IN] - the read string
-	 * @return successful?
-	 */
-	bool characters(const QString& sText);
+    protected:
 
 
     private:
+	void paintEvent(QPaintEvent* p);
+	void DrawGrid(const QStringList& labelList);
+	void DrawData();
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	CRun* m_pRun;		    ///< The new CRun onject (possession discarded)
-	QPtrList<CRun>* m_pRunList; ///< The runlist to be filled with objects (not owned)
-	QString m_sVersion;	    ///< The DTD version (for use in later versions)
-	QString m_sParsedText;	    ///< The parsed text between start and end tag
-    
+	EnDrawMode m_EnDrawMode;	    
     private:
     //------------------------------------------------------------------------------
     // implementation protection
     //------------------------------------------------------------------------------
 	TSelf& operator=( const TSelf& other );
-	CRunParser( const TSelf& other );
+	CStatsWidget( const TSelf& other );
 };
 
 }; //namespace
 
-#endif//__PHIL_RUN_PARSER_H__
+#endif//__PHIL_STATS_WIDGET_H__
 

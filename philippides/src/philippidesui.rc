@@ -6,6 +6,9 @@
     <Separator/>
     <Action name="file_quit"/>
   </Menu>
+  <Menu name="View" noMerge="1"><text>&amp;View</text>
+    <Action name="view_stats"/>
+  </Menu>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="options_show_toolbar"/>
     <Action name="options_show_statusbar"/>
@@ -18,6 +21,7 @@
 </MenuBar>
 <ToolBar name="mainToolBar" noMerge="1"><text>Main Toolbar</text>
     <Action name="file_save"/>
+    <Action name="view_stats"/>
     <Action name="help"/>
 </ToolBar>
 </kpartgui>
