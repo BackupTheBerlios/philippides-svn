@@ -1,8 +1,7 @@
 //******************************************************************************
 /**
  * @file RunDialog.cpp
- * short description.
- * brief description.
+ * This file contains the implementation of the CRunDialog class
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/32/2004

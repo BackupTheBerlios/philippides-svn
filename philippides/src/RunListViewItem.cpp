@@ -58,7 +58,7 @@ CRunListViewItem::CRunListViewItem(QListView* pParent, const CRun* pRun):
 
 CRunListViewItem::~CRunListViewItem()
 {
-
+    delete m_pRun;
 }
 
 //------------------------------------------------------------------------------

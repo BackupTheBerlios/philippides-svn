@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file RunDialog.h
- *
- * short description.
- * brief description.
+ * This file contains the definition of the class CRunDialog
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/32/2004
@@ -51,9 +49,8 @@ namespace Phil
 {
 
 /** @class CRunDialog
- *
- * short description.
- * brief description.
+ * This dialog can create and edit CRun objects.
+ * The object discards the newly created object's ownership.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/32/2004
@@ -72,14 +69,25 @@ class CRunDialog: public CRunDialogBase
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
+	* Constructor.
+	* Creates the dialog and set's all widgets to a default state.
 	*
-	* @param name desc
+	* @param pParent    [IN] - The widget's parent widget
+	* @param szName	    [IN] - Qt's internal string representation
 	**/
 	CRunDialog(QWidget* pParent, const char* szName);
 	
-	
+	/**
+	 * Constructor.
+	 * Sets the widget's initial values it gets from the given CRun object.
+	 *
+	 * @overload
+	 * @exception Except::InvalidDataException
+	 * @param pRun	    [IN] - The dialog's widgets are set to the values from 
+	 *			    this object.
+	 * @param pParent   [IN] - The widget's parent widget
+	 * @param szName    [IN] - Qt's internal string representation
+	 */
 	CRunDialog(const CRun* pRun, QWidget* pParent, const char* szName);
 
 	/** default destructor */
@@ -88,6 +96,13 @@ class CRunDialog: public CRunDialogBase
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
+	/**
+	 * Returns the created object.
+	 * \note Ownership is discarded.
+	 *
+	 * @exception Except::GenericException
+	 * @return the new object
+	 */
 	CRun* GetRun();
 
     //------------------------------------------------------------------------------
@@ -103,13 +118,16 @@ class CRunDialog: public CRunDialogBase
 
 
     private slots:
+	/**
+	 * This slot creates the new CRun object.
+	 */
 	void SlotCreateRun();
 
     private:
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	CRun* m_pRun;
+	CRun* m_pRun;	    ///< The created CRun object.
     private:
     //------------------------------------------------------------------------------
     // implementation protection

@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file RunListViewItem.h
- *
- * short description.
- * brief description.
+ * This file contains the definition of the class CRunListViewItem.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/32/2004
@@ -51,9 +49,11 @@ namespace Phil
 {
 
 /** @class RunListViewItem
+ * Adapted version of a ListView Item.
+ * This class provides an extended functionality to a QListViewItem by storung a 
+ * pointer to a CRun object.
  *
- * short description.
- * brief description.
+ * \note This object owns the pointer and deletes the CRun object at destruction.  
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date Mar/32/2004
@@ -72,10 +72,12 @@ class CRunListViewItem: public QListViewItem
     // structors
     //--------------------------------------------------------------------------
 	/** 
-	* short method description.
-	* brief method description.
+	* Constructor
+	* This is the only constructor to make sure that every object of this class
+	* has one CRun*.
 	*
-	* @param name desc
+	* @param pParent    [IN] - The item's QListView to add the object to.
+	* @param pRun	    [IN] - The owned CRun pointer.
 	**/
 	CRunListViewItem(QListView* pParent, const CRun* pRun);
 
@@ -85,6 +87,11 @@ class CRunListViewItem: public QListViewItem
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
+	/**
+	 * Returns the owned CRun*
+	 *
+	 * @return The CRun*.
+	 */
 	const CRun* GetRun() const  {return m_pRun;}
     //------------------------------------------------------------------------------
     // operator
@@ -102,7 +109,7 @@ class CRunListViewItem: public QListViewItem
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	const CRun* m_pRun;
+	const CRun* m_pRun;	///< The owned CRun*
 	    
     private:
     //------------------------------------------------------------------------------

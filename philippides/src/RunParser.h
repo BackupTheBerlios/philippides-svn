@@ -107,7 +107,7 @@ class CRunParser: public QXmlDefaultHandler
 	 *
 	 * @exception Except::InvalidDataException
 	 * @param sElementName [IN] - the name of the starting tag
-	 * @param attributies [IN] - the tag's attributes
+	 * @param attributes [IN] - the tag's attributes
 	 * @return successful?
 	 */
 	bool startElement(const QString& /* EMPTY */, 
