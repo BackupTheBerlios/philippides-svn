@@ -93,7 +93,7 @@ void CStatsWidget::DrawData()
 	    {
 		QStringList dayList;
 		for(int i=1; i<=7; i++){
-		    dayList += QDate::longDayName(i);
+		    dayList += QDate::shortDayName(i);
 		}
 		DrawGrid(dayList);
 		break;
@@ -111,7 +111,7 @@ void CStatsWidget::DrawData()
 	    {
 		QStringList yearList;
 		for(int i=1; i<=12; i++){
-		    yearList += QDate::longMonthName(i);
+		    yearList += QDate::shortMonthName(i);
 		}
 		DrawGrid(yearList);
 	    break;
@@ -153,12 +153,13 @@ void CStatsWidget::DrawGrid(const QStringList& labelList)
 	unsigned int nX = i*nColWidth + m_nLeftBorder + 5;
 	p.drawText(nX, height()-5, labelList[i]);
     }
+
 }
 
 void CStatsWidget::DrawBars()
 {
-    for(int i=0; i<m_pData->size(); i++)
-	kdDebug() << "Value: " << m_pData->at(i) << endl;
+//    for(int i=0; i<m_pData->size(); i++)
+//	kdDebug() << "Value: " << m_pData->at(i) << endl;
     unsigned int nCols = m_pData->size();
     unsigned int nDrawWidth = width() - m_nLeftBorder;
     unsigned int nDrawHeight = height() - m_nBottomBorder;
@@ -183,6 +184,29 @@ void CStatsWidget::DrawBars()
 	unsigned int nY = nDrawHeight-(unsigned int)(m_pData->at(i)*fScale);
 	p.drawRect(nX, nY, nColWidth, nDrawHeight-nY);
     }
+   
+    unsigned int nStep=0;
+    if(nMaxVal<10000)
+	nStep = 1000;
+    else if(nMaxVal<50000)
+	nStep = 5000;
+    else if(nMaxVal<100000)
+	nStep = 10000;
+    else if(nMaxVal<500000)
+	nStep = 50000;
+    else
+	nStep = 100000;
+   
+    kdDebug() << "Max: " << nMaxVal << "\tStep: " << nStep << endl;
+    
+    // draw values on the y-axis
+    for(unsigned int i=0; i<nMaxVal; i+=nStep){
+	unsigned int nY = nDrawHeight - (unsigned int)(i*fScale)-10;
+	p.drawText(5, nY, m_nLeftBorder-10, 20, Qt::AlignRight, 
+				QString::number(i/1000));
+    }
+	
+    
 }
 
 };//namespace
