@@ -1,7 +1,6 @@
 /**
  * @file philippides.h
- *
- * @brief
+ * This is the
  *
  *
  * $Id$
@@ -17,6 +16,14 @@
 #endif
 
 #include <kmainwindow.h>
+
+// forward declarations
+class KToggleAction;
+
+class CDbWidgetBase;
+
+namespace Phil
+{
 
 /**
  * @short Application Main Window
@@ -36,6 +43,43 @@ public:
      * Default Destructor
      */
     virtual ~Philippides();
+
+protected:
+
+     /**
+     * This method is called when it is time for the app to save its
+     * properties for session management purposes.
+     */
+    void saveProperties(KConfig *);
+
+    /**
+     * This method is called when this app is restored.  The KConfig
+     * object points to the session management config file that was saved
+     * with @ref saveProperties
+     */
+    void readProperties(KConfig *);
+
+//    TODO:: implement these!
+//    bool queryClose();
+//
+//    bool queryExit();
+//
+//
+private:
+    void setupActions();
+    CDbWidgetBase* m_pBaseWidget;
+    
+private slots:
+    void optionsShowToolbar();
+    void optionsShowStatusbar();
+    void optionsConfigureKeys();
+    void optionsConfigureToolbars();
+    void applyNewToolbarConfig();
+    
+    KToggleAction* m_toolbarAction;
+    KToggleAction* m_statusbarAction;
 };
 
+
+};     // namepspace
 #endif // _PHILIPPIDES_H_

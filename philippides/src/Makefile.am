@@ -4,6 +4,9 @@ INCLUDES = $(all_includes)
 # these are the headers for your project
 noinst_HEADERS = philippides.h \
 		 Athlet.h \
+		 AthletDtd.h \
+		 Run.h \
+		 RunDtd.h \
 		 Exceptions.h
 
 # let automoc handle all of the meta source files (moc)
@@ -24,16 +27,18 @@ bin_PROGRAMS = philippides
 # the application source, library search path, and link libraries
 philippides_SOURCES = 	main.cpp \
 			philippides.cpp \
-			Athlet.cpp 
+			Athlet.cpp \
+			Run.cpp \
+			DbWidgetBase.ui
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 philippides_LDADD = $(LIB_KDEUI)
 
 # this is where the desktop file will go 
-shelldesktopdir   = $(kde_appsdir)/Utilities
-shelldesktop_DATA = philippides.desktop
+kdelnkdir   = $(kde_appsdir)/Utilities
+kdelnk_DATA = philippides.desktop
 
 # this is where the shell's XML-GUI resource file goes
-shellrcdir   = $(kde_datadir)/philippides
-shellrc_DATA = philippidesui.rc
+rcdir   = $(kde_datadir)/philippides
+rc_DATA = philippidesui.rc
 

@@ -42,11 +42,11 @@ int main(int argc, char **argv)
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;
-    Philippides *mainWin = 0;
+    Phil::Philippides *mainWin = 0;
 
     if (app.isRestored())
     {
-        RESTORE(Philippides);
+        RESTORE(Phil::Philippides);
     }
     else
     {
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
         /// @todo do something with the command line args here
 
-        mainWin = new Philippides();
+        mainWin = new Phil::Philippides();
         app.setMainWidget( mainWin );
         mainWin->show();
 
