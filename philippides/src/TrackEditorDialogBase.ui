@@ -1,0 +1,269 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>CTrackEditorDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>CTrackEditorDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>673</width>
+            <height>508</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Track Editor</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>toolButton1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>image0</iconset>
+                    </property>
+                </widget>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>magButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>image1</iconset>
+                    </property>
+                </widget>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>minButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>image2</iconset>
+                    </property>
+                </widget>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>openButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>image3</iconset>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>290</height>
+                        </size>
+                    </property>
+                </spacer>
+            </vbox>
+        </widget>
+        <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>410</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Ok</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>quitButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Quit</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+Q</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QScrollView" row="0" column="1">
+            <property name="name">
+                <cstring>mapWidget</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>50</width>
+                    <height>50</height>
+                </size>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>QScrollView</class>
+        <header location="global">/usr/include/qt3/qscrollview.h</header>
+        <sizehint>
+            <width>256</width>
+            <height>256</height>
+        </sizehint>
+        <container>1</container>
+        <sizepolicy>
+            <hordata>7</hordata>
+            <verdata>7</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image4</pixmap>
+        <signal>rotatedX(int)</signal>
+        <slot access="public" specifier="">rotateZ(int)</slot>
+        <slot access="public" specifier="">rotateY(int)</slot>
+        <slot access="public" specifier="">rotateX(int)</slot>
+        <slot access="public" specifier="">zoom(int)</slot>
+        <slot access="public" specifier="">fractalize()</slot>
+        <slot access="public" specifier="">setWireframe(int)</slot>
+        <slot access="public" specifier="">setFilled(int)</slot>
+        <slot access="public" specifier="">setGridSize(int)</slot>
+        <slot access="public" specifier="">toggleWaveAnimation(bool)</slot>
+        <slot access="public" specifier="">setSmoothShaded(int)</slot>
+        <slot access="public" specifier="">setLandscape(int)</slot>
+        <slot access="public" specifier="">resetGrid()</slot>
+    </customwidget>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="942">789c95d0cb4e84301480e13d4fd1d01d319d199d314c8c8fa07169625c1c4edb69816aa2e3c218dfdd9e16d094762181d09f8f96cba6618f0f77acd954ef67385b6468e08d35f2c3b9cfa7e7dbafaabedc33bfef0e6c575f54b560c8ee5f5f148d073fe65bbf694d39c66ca774948716da9886b2a5bbb7943d252e6929b59e93c7bcdec7ec621edb9832261e63624c3925c4a4c528f59c7845a9e69440795a5286af2b6ca971bf030fe7d4e8fa7cace74187801d64e609d1815412baccf33847a99492c8576b720050faa4953ff37fcc13c2949f67caefe989dbfcf799de72db67ff8b276b7b93fb9f29fdb115fdda30a6b4d830ba9466f3e45c4293051a0791b13c052b50b002052bd0645912f5f74df50377fad1f1</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="3646">789c7d96c97214471086ef7a8a09e58d7024dd3dbd86c307691020404212dac0e1435655f7685f47abc3efee9cbfb21b2dd81421e223ffacaaac5c5a6fdf8cf637d6466fde2e5ccf6476e847fe40ae466fc2cde9e9c39f7ffdf1f7c262968df46f5a34a36cf1b785c5cdd9c88fd6cfcfda39f0548112fc012f47cea506d3a6b1afc77396165ce65d5dc03e9e73da14a1c1e67c096ecba44961df9a7356944523b0c37f9c959de4e0006eab5a3cb80377b92f4af0c59cf3aa0a52833dd8d5998b7637e7a2ae9d433cd41a7bd7e1be1370334e2d3e99739937b9afc0046e1befe37b1c0e1cfdcfe75ca5b5ebe02ff703233e3903974d1a992791250b31be0370d5b3dc819ba6e8f05e720af64d638cf8aad088f17564d1ff0223deaa6bbcd96fe75c679274313f88af1e0f7c02ce25ede27df6c1a5242eda117f2d5277319f19d889443da5602f2eb21c0f1cf5c99c9b44bac872034e5dda213f7204cedd3832fd0017ae303b832b57997dc3b836fb0c5c2b23fff415dcb8c6f4df8da5433e6509ec8a22e65b0e233b6ffeeb60ef42d453036e5d67f63570e7d3c882fc49a28cf7a71570e673f3af078efa2bf0b8cc92a87f17d917669f0e8c7e20e4430a5fd9fe13e3dab8026b8144bd74033bd8bf803521a65f3676c6f13ee283f1dec0f1fc12ec94e37e97c6ade997068e7af4a36877181703c35fd0cf1224c4f7a7f3c82131fdeec0f1bc47701b52e333e3cc380777ca01fc79ce2e19ec3bc6e30ef38370be4b436ef66de3c2ece82f9785d2ece827370e95d91fc0f960ff64dcdbbf0d1cef83fe75c5a05f35aea39d4be326fa33decb95416cbf8f606d70dbef83b1377e0f6e42e8e27cda336e6d7fd4b30ebfc4ec782f17d41ecfdb8dacf6b8dfb5716a7ad4a76bdb718779c7a817d7b5796442fff964d01f199b5d903f9fd5218bf369b9e702f389308f7cde9fcfc7c6a59d87fbf8b2ad8cd1dfbeea99306f7dddf6f9c73cf38dde37ee877ef5a2fa38ff310fbd6b0bbb2fea37246d6376ccdf50b4627c63ec4c8fef59287ba6ced81b635e865aedf1fccab8b5fb22be20bd9e778cfbfc9d1877162ffa3738e5683f8bdc256647fdced369f6f3c89de59b303f75f3de8efed06ca5e63f33ce8c51bffa9a99e931fff435fbfc66c6bdfdd1d8ea83907fcdbee9e9d0b8d7631e6a36c6c69f8cad5e18df93b6568ef62de3c2ece83fcd4ecff8bee86b5abd10e6b1be665f3fabc67dbd60be6a36fa7a3a35ae8d514ffa5a3da3fff4357b467d68748d31be571a5dcff87d48a313637c7f349a9ed1bf7a7b678cef99ded658105f5735791aeb07f5a7a77bd3a37e551d8cd1ff9a5eab2f5e31b6fa11cceb39d9f7eea2e768df9cf58b89851d7b0edc72c7d39f967efdd4f3011ff2111ff3099ff2199ff3055ff2f4a54faf57f5155ff38c6ff896eff89e1ff8919778f9a547d4f384dfe9be2bfc9e3ff0475ee54ffc99bff01aafbff4303df157dd758337f5e72a6ff137dee61ddee5bda8e7fda77a551ff377bdc90fbd47c22967aa1e73ce85aed23ca64ff4c2952aef75e707aeb921262221479e0285e737427db5d4d1940ef8810ee9888ee9844ee98ccee9822ee9eab59e3d5dd38c6ee896eee89e1ee89196689926f48e5668e517fa40efe9037da455fa449f55fb45956bb44e5f6943d7e62bfd94b6e81b6dd30eedd21eedabf63bfda08452ca9e473be8c794534125555453234c89e8ef03e2c4f3b284977a7dffa9683bca540ee4508ee4584ee454cee45cd517722957cfdf53ae71e6b25a6772a33bdfca9ddc831f547d218f3f3d86fa99f63ec39aca92ea9755fdc4e3497d4e5f2f99c8d5738f5eaf770abff279e9f15cff72bdf688f1ca356d7398fffbbf1ea6d7ee9b2f44f9bf674ca2deeef30bed338fc98bfbffa7fee93b2cfef3fbc2bfb1af9e08</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="3646">789c8596d94e1d471086ef790a44dd59517966ceac8a72c1c1d8061b0cd82c76948beaee99c3be1ed628ef9e3a7fd70c5b62bb2da48ffaabbbab6b19debe99dfdb589b7ff376ee6a2ad3033feff7e572fe4db83e39b9fff3af3ffe9e5bc8b279fd9f16cd7cb6f0dbdcc2e674decfaf9f9db633e0890225f8071e47cea506d3a6b1af473396165ce65d5dc03e9a71da14a1c1e67c016ecba44961df9a7156944523b0c37f94959de4e0006eab5a3cb80377b92f4af0f98cf3aa0a52833dd8d5998b7637e3a2ae9d433cd41a7bd7e1be4be066945a7c32e3326f725f8109dc36dec7f7381838fa9fcdb84a6bd7c15fee06467c720a2e9b34322f45962cc4f8f6c155cf720b6e9aa2c37bc909d8378d31e2ab4223c65791457f0546bc55d778b3dfccb8ce24e9627e105f3d1af8189c4bdac5fbec814b495cb423fe5aa4ee623e33b013897a4ac15e5c64391a38ea931937897491e51a9cbab4437ee4109cbb5164fa012e5c61760657ae32fb86716df629b85646fee90bb8718de9bf1b4b877cca22d81545ccb71c4476defcd7c1de85a8a706dcbaceec6be0cea79105f9934419ef4fcbe0cce7e65f0f1cf597e051992551ff2eb22fcc3e1918fd40c88714beb2fd978c6be30aac0512f5d20dec60ff0cd684987e6cec8ce37dc407e3dd81e3f925d829c7fd2e8c5bd32f0e1cf5e847d1ee302e0686bfa09f254888ef4f67914362fa9d81e3790fe036a4c6a7c699710eee9403f8d38c5d32d8b78d471de607e17c9786dcecdf8c0bb3a3bf5c164ab3a39fdc285466bf07e7837dd5b8b77f1d38de07fdeb8a41bf625c473b97c64df467bc972b83d87e1fc1dae0b6df07636ffc1edc84d0c5f9b46bdcdafea8671d7e89d9f15e2ea83d9eb71359ed71bf2be3d4f4a84fd7b6a30ef38e512fae6bf3c884fef3c9a03f3436bb207f3eab4316e7d3b8e702f389308f7cde9fcf47c6a59d87fbf8b2ad8cd1dfbeea99306f7dddf6f9c73cf38dde37ee877ef5a2fa38ff310fbd6b0bbb2fea37246d6376ccdf50b4627c6dec4c8fef59287ba6ced81b635e865aedf1fccab8b5fb22be20bd9eb78dfbfc1d1b77162ffa3738e5683f8ddc256647fdced269f6b3c89de59b303f75f3de8efed06ca5e63f35ce8c51bffa9a99e931fff435fbfc66c6bdfdc1d8ea83907fcdbee9e9c0b8d7631e6a3646c6abc6562f8cef495b2b47fb96716176f49f66a7677c5ff435ad5e08f3585fb3af9f15e3be5e305f351b7d3d9d18d7c6a8277dad9ed17ffa9a3da33e34bac618df2b8dae67fc3da4d18931be3f1a4dcfe85fbdbd33c6f74c6f6b2c88afab9a3c8df583fad3d3bde951bfaa0ec6e87f4dafd5172f1b5bfd08e6f58cec7b77de73b46f4efbc5c4c28e3d076eb9e3c9a3a55f8f7adee7033ee4233ee6133ee5333ee70b9ebcf4e9f5aabee42b9ef235dff02ddff13d3ff0228f5f7a443d2ff13bdd7799dff307fec82bbcca9ff833aff1fa4b0fd3137fd15d3778537faef0167fe56fbccd3bbc1bf5bcf754afea23feae37f9a1f74838e54cd523ceb9d0559ac7e4895eb852e59dee7ccf3537c44424e4c853a0f0fc46a8af963a9ad03edfd3011dd2111dd3099dd2199dd3055dbed6b3a72b9ad235ddd02dddd13d3dd0228d6989ded1322dff873ed07bfa401f698556e9936a3fab728dd6e90b6de8da7ca59fd0167da56fb44d3bb44b7baafd4e3f28a194b2e7d10efa11e554504915d5d4085322faf78038f13c96f052afef3f116d4799c8be1cc8a11cc9b19cc8a99ca9fa5c2ee4f2f97bca15ce1cab752ad7baf38ddcca1df85ed5e7f2f0e831d4cfa4f719d64416553f56f5138f27f53979bd64492e9f7bbca8ff5f7a3cd7bf5caf3d62bc8feba71ea6d7ee9b2d44f9d33396a2feffeff3cc63e9d7f77ffd0e0bfffc3ef72f91789f7b</data>
+    </image>
+    <image name="image3">
+        <data format="XPM.GZ" length="2573">789ca594496f1b391085effe158279330695de4922c82172f6c48e95d5c9600e5cbd4a4e6cd98913cc7f1ff62ba6215b8a3c83e9d797afc9572c56917d6f6bb4bfb733dabab7713137f323377287e67cb4e52fa7d3eb3fff7af07363b36a46e955c5a8dafc636373321fb9d1eed92cf4403d88020ff88ab9aa3a0fde66ae3b657b1602ac5b694b8c97cc5d650df80bd834a5c662740ab6036bb0978d453cfa000e293ce7d3f45c1632ba06fc095c2ae3389fb7e05a37be05ef819bce3bce6707dceae879fe33706774e0785fc1aa899ad73f636e0bcdf99f0fcce32fc05656391f050eb2750a7c018eb20e5cbfc73d57a554797c0c969d721df804acbaca303f6496def17a33b01ec66bb04df570e016ec4c99f7770d8eaa725cbf6f3dd75229cff5d8cfac331f83adec2cf7630a7603bfe9b9697595ebfb19dcd932d46009b6baf46041609ffac3f5f3e0a8ac8de0aee7b65021f7ef15b8d2ce6bf80db84e7e3015ccba74ecafc0add69eebf11e2c75e739dfd7609bc6d11f61c15e5acbfdf8088ea95e9cdff39ebb42fb1cef29b8345daee711b83245ee871b98ebff8ed99581fbfb08dca4f89cff0fb0368d67ff046c8ccaf1bf83c3c0973dcb3a1d6fdeef4b706b8bc0fdb2995389c18703f37abbe0e88bc0fd7fd2b32aadcae7fd00dcb92ef7cf6496793cf6ac6bdf06de1fee777fbb3207700845e47ea3bf46dbc0fb13a88f2d5cedb1bec07c5bba86f72310df2a6702fa25908f8d2e069c2f81fd38e5bbc0e701f577d15b5e5fe0bca6d132703cdc1f1f828c1c0fff97d00517391ece73f0315d0930ee536ca38c967f7eb745820c5972e497c726f3650f85a44807744847e4e9984ed2b7d3759ede7183a734a333faf27bcfcdf9f9db8cbeaef3ac70a4dce87cb5872eb2e6b426c2a227cdbdccbabadbc5ffc634f7dba0ab25dd8a923ddfe97a8d6eb9b2e7073d84c67768bb7767cf237a0c8de9093d5dd233f4b9d7a2e739bd481ad34b7ab5423bb40bc131785ed35ed29826f46685ded23be8a6e73d7d488e8fb4bf529fe87352760c3528a84c9e8aea956aa84dbaede9924392fa8df4a2e39747108dc5da6785c7082b9cf05010511c884371248ec589381553315b742c787a87fb4f9e5f0eb7ca73d3913ddb776ad933ff379afc6fcf5df772e9cefd7d7fe31fde038c01</data>
+    </image>
+    <image name="image4">
+        <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b722ddac1741fc04c5a3201e6615f43085390f22febbb65dd6666dd821dda36996b552b0df6d4055e2d937fdcd82bd361da8f3ab6ddf87e3fa23a431e01e98cb99901a2c6c1ff78bcbf19fe372713275ed6908f441ab51300617649108624641d22a9427c21a192405241a256e08e4850311172a3b95d87159742e98ef09bda403e03271f6a5bc663e9d8214279afd05eaa048f11e242f753c27bb21ee9cef4afc00c1c26728</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>quitButton</sender>
+        <signal>clicked()</signal>
+        <receiver>CTrackEditorDialogBase</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>CTrackEditorDialogBase</receiver>
+        <slot>SlotOkBtn()</slot>
+    </connection>
+    <connection>
+        <sender>openButton</sender>
+        <signal>clicked()</signal>
+        <receiver>CTrackEditorDialogBase</receiver>
+        <slot>SlotOpenBtn()</slot>
+    </connection>
+    <connection>
+        <sender>minButton</sender>
+        <signal>clicked()</signal>
+        <receiver>CTrackEditorDialogBase</receiver>
+        <slot>SlotMinBtn()</slot>
+    </connection>
+    <connection>
+        <sender>magButton</sender>
+        <signal>clicked()</signal>
+        <receiver>CTrackEditorDialogBase</receiver>
+        <slot>SlotMagBtn()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot access="private" specifier="pure virtual">SlotOkBtn()</slot>
+    <slot access="private" specifier="pure virtual">SlotOpenBtn()</slot>
+    <slot access="private" specifier="pure virtual">SlotMagBtn()</slot>
+    <slot access="private" specifier="pure virtual">SlotMinBtn()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>qscrollview.h</includehint>
+</includehints>
+</UI>
