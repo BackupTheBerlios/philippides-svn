@@ -12,8 +12,20 @@
 
 namespace DTD
 {
+
+/**
+ * filename of the athlet configuration file
+ */
+const char* const szAthletFile = "athlet.xml";
+
+/**
+ * the athlet DTD's version number
+ */
 const char* const szAthletVERSION = "1.0";
-    
+
+/**
+ * the athlet DTD
+ */
 const char* const szAthletDtd = 
     "\n<!-- the dtd describing an athlet entity -->\n"
     "<!DOCTYPE athlet [\n"

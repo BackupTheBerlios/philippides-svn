@@ -20,7 +20,11 @@
 // forward declarations
 class KToggleAction;
 
-class CDbWidgetBase;
+namespace Phil
+{
+    class CDbWidget;
+    class CAthlet;
+}
 
 namespace Phil
 {
@@ -67,7 +71,9 @@ protected:
 //
 private:
     void setupActions();
-    CDbWidgetBase* m_pBaseWidget;
+    void checkForAthlet();
+    CDbWidget* m_pBaseWidget;
+    CAthlet* m_pAthlet;
     
 private slots:
     void optionsShowToolbar();

@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>676</width>
-            <height>424</height>
+            <width>724</width>
+            <height>481</height>
         </rect>
     </property>
     <property name="caption">
@@ -20,7 +20,7 @@
     </property>
     <widget class="QWidget">
         <property name="name">
-            <cstring>page</cstring>
+            <cstring>page_1</cstring>
         </property>
         <attribute name="title">
             <string>Page1 Disclaimer</string>
@@ -192,7 +192,7 @@
             <property name="name">
                 <cstring>unnamed</cstring>
             </property>
-            <widget class="QLayoutWidget" row="0" column="0" rowspan="2" colspan="1">
+            <widget class="QLayoutWidget" row="0" column="0" rowspan="3" colspan="1">
                 <property name="name">
                     <cstring>Layout1_2</cstring>
                 </property>
@@ -250,43 +250,39 @@
                     </widget>
                 </hbox>
             </widget>
-            <widget class="QGroupBox" row="0" column="1">
+            <widget class="QLabel" row="0" column="1">
+                <property name="name">
+                    <cstring>textLabel1</cstring>
+                </property>
+                <property name="text">
+                    <string>&lt;font size="+1"&gt;&lt;b&gt;Please enter as much data as possible.&lt;/b&gt;&lt;/font&gt;</string>
+                </property>
+            </widget>
+            <widget class="QGroupBox" row="1" column="1">
                 <property name="name">
                     <cstring>GroupBox1</cstring>
                 </property>
                 <property name="title">
                     <string>Personal (!)&amp;data</string>
                 </property>
-                <vbox>
+                <hbox>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
                     <widget class="QLayoutWidget">
                         <property name="name">
-                            <cstring>layout14</cstring>
+                            <cstring>layout12</cstring>
                         </property>
                         <grid>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QLabel" row="1" column="0">
+                            <widget class="KIntNumInput" row="1" column="3" rowspan="1" colspan="2">
                                 <property name="name">
-                                    <cstring>TextLabel2_2</cstring>
+                                    <cstring>HeightInput</cstring>
                                 </property>
-                                <property name="text">
-                                    <string>Last Name</string>
-                                </property>
-                            </widget>
-                            <widget class="KDateWidget" row="2" column="1">
-                                <property name="name">
-                                    <cstring>DateWidget</cstring>
-                                </property>
-                                <property name="date">
-                                    <date>
-                                        <year>1975</year>
-                                        <month>1</month>
-                                        <day>1</day>
-                                    </date>
+                                <property name="suffix">
+                                    <string>cm</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="0" column="2">
@@ -294,43 +290,7 @@
                                     <cstring>TextLabel4</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Weight [kg]</string>
-                                </property>
-                            </widget>
-                            <widget class="KIntNumInput" row="1" column="3">
-                                <property name="name">
-                                    <cstring>HeigtInput</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="0" column="1">
-                                <property name="name">
-                                    <cstring>FNameEdit</cstring>
-                                </property>
-                            </widget>
-                            <widget class="KIntNumInput" row="0" column="3">
-                                <property name="name">
-                                    <cstring>WeightInput</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="2">
-                                <property name="name">
-                                    <cstring>TextLabel5</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Height [cm]</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="1" column="1">
-                                <property name="name">
-                                    <cstring>LNameEdit</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="0">
-                                <property name="name">
-                                    <cstring>TextLabel3</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Birthday</string>
+                                    <string>Weight</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="0" column="0">
@@ -341,18 +301,118 @@
                                     <string>First Name</string>
                                 </property>
                             </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>FNameEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" row="2" column="4">
+                                <item>
+                                    <property name="text">
+                                        <string>female</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>male</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>GenderBox</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>1</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>109</width>
+                                        <height>0</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>300</width>
+                                        <height>32767</height>
+                                    </size>
+                                </property>
+                                <property name="insertionPolicy">
+                                    <enum>NoInsertion</enum>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel2_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Last Name</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>LNameEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="2" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>textLabel2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Gender</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="2">
+                                <property name="name">
+                                    <cstring>TextLabel5</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Height</string>
+                                </property>
+                            </widget>
+                            <widget class="KIntNumInput" row="0" column="3" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>WeightInput</cstring>
+                                </property>
+                                <property name="suffix">
+                                    <string>kg</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Birthday</string>
+                                </property>
+                            </widget>
+                            <widget class="KDateWidget" row="2" column="1">
+                                <property name="name">
+                                    <cstring>DateWidget</cstring>
+                                </property>
+                                <property name="date">
+                                    <date>
+                                        <year>2000</year>
+                                        <month>1</month>
+                                        <day>1</day>
+                                    </date>
+                                </property>
+                            </widget>
                         </grid>
                     </widget>
-                </vbox>
+                </hbox>
             </widget>
-            <widget class="QGroupBox" row="1" column="1">
+            <widget class="QGroupBox" row="2" column="1">
                 <property name="name">
                     <cstring>GroupBox2</cstring>
                 </property>
                 <property name="title">
                     <string>What's (!)&amp;your ...</string>
                 </property>
-                <vbox>
+                <hbox>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
@@ -364,7 +424,23 @@
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QLabel" row="5" column="0" rowspan="2" colspan="1">
+                            <widget class="KIntNumInput" row="7" column="1" rowspan="2" colspan="1">
+                                <property name="name">
+                                    <cstring>BigDistInput</cstring>
+                                </property>
+                                <property name="suffix">
+                                    <string>m</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="7" column="0">
+                                <property name="name">
+                                    <cstring>TextLabel9</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>... biggest distance you succeeded?</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="8" column="0" rowspan="2" colspan="1">
                                 <property name="name">
                                     <cstring>TextLabel10</cstring>
                                 </property>
@@ -372,22 +448,21 @@
                                     <string>... average running pulse [1/s]</string>
                                 </property>
                             </widget>
-                            <widget class="KIntNumInput" row="8" column="1">
+                            <widget class="QLabel" row="10" column="0">
                                 <property name="name">
-                                    <cstring>MorningPulseInput</cstring>
+                                    <cstring>TextLabel11</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>... morning pulse (measure before you 
+	get up in the morning)? [1/s]</string>
                                 </property>
                             </widget>
-                            <widget class="QLabel" row="2" column="0">
+                            <widget class="QLabel" row="3" column="0" rowspan="2" colspan="1">
                                 <property name="name">
                                     <cstring>TextLabel8</cstring>
                                 </property>
                                 <property name="text">
                                     <string>... 5km time? [hh:mm:ss]</string>
-                                </property>
-                            </widget>
-                            <widget class="KIntNumInput" row="0" column="1">
-                                <property name="name">
-                                    <cstring>RunFreqInput</cstring>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="0" column="0">
@@ -398,54 +473,61 @@
                                     <string>... weekly runningfrequency?</string>
                                 </property>
                             </widget>
-                            <widget class="QLabel" row="1" column="0">
+                            <widget class="KIntNumInput" row="0" column="1" rowspan="2" colspan="1">
                                 <property name="name">
-                                    <cstring>TextLabel7</cstring>
+                                    <cstring>RunFreqInput</cstring>
                                 </property>
-                                <property name="text">
-                                    <string>... average distance? [km]</string>
+                                <property name="suffix">
+                                    <string>times</string>
                                 </property>
                             </widget>
-                            <widget class="KTimeWidget" row="2" column="1" rowspan="2" colspan="1">
+                            <widget class="KTimeWidget" row="4" column="1" rowspan="2" colspan="1">
                                 <property name="name">
                                     <cstring>Km5TimeWidget</cstring>
                                 </property>
                             </widget>
-                            <widget class="QLabel" row="7" column="0" rowspan="2" colspan="1">
+                            <widget class="KTimeWidget" row="6" column="1">
                                 <property name="name">
-                                    <cstring>TextLabel11</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>... morning pulse (measure before you 
-	get up in the morning)? [1/s]</string>
+                                    <cstring>Km10TimeWidget</cstring>
                                 </property>
                             </widget>
-                            <widget class="KDoubleNumInput" row="4" column="1" rowspan="2" colspan="1">
-                                <property name="name">
-                                    <cstring>BigDistInput</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="3" column="0" rowspan="2" colspan="1">
-                                <property name="name">
-                                    <cstring>TextLabel9</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>... biggest distance you succeeded? [km]</string>
-                                </property>
-                            </widget>
-                            <widget class="KDoubleNumInput" row="1" column="1">
-                                <property name="name">
-                                    <cstring>AvgDistInput</cstring>
-                                </property>
-                            </widget>
-                            <widget class="KIntNumInput" row="6" column="1" rowspan="2" colspan="1">
+                            <widget class="KIntNumInput" row="9" column="1">
                                 <property name="name">
                                     <cstring>AvgPulseInput</cstring>
                                 </property>
                             </widget>
+                            <widget class="KIntNumInput" row="2" column="1" rowspan="2" colspan="1">
+                                <property name="name">
+                                    <cstring>AvgDistInput</cstring>
+                                </property>
+                                <property name="suffix">
+                                    <string>m</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="5" column="0" rowspan="2" colspan="1">
+                                <property name="name">
+                                    <cstring>TextLabel8_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>... 10km time? [hh:mm:ss]</string>
+                                </property>
+                            </widget>
+                            <widget class="KIntNumInput" row="10" column="1">
+                                <property name="name">
+                                    <cstring>MorningPulseInput</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0" rowspan="2" colspan="1">
+                                <property name="name">
+                                    <cstring>TextLabel7</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>... average distance?</string>
+                                </property>
+                            </widget>
                         </grid>
                     </widget>
-                </vbox>
+                </hbox>
             </widget>
         </grid>
     </widget>
@@ -548,17 +630,23 @@
     <tabstop>TextBrowser2</tabstop>
     <tabstop>LicenseTextBrowser</tabstop>
 </tabstops>
+<slots>
+    <slot access="protected" specifier="pure virtual">SlotCheckPage2(const QString&amp;)</slot>
+    <slot access="protected" specifier="pure virtual">SlotDateChanged()</slot>
+    <slot access="protected" specifier="pure virtual">SlotCreateAthlet()</slot>
+</slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
     <includehint>kdatewidget.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
+    <includehint>ktimewidget.h</includehint>
     <includehint>ktimewidget.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>

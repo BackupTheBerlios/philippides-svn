@@ -13,7 +13,13 @@
 
 #include "philippides.h"
 
+#include <iostream>
+
 #include <qlabel.h>
+#include <qstring.h>
+#include <qfileinfo.h>
+#include <qfile.h>
+#include <qtextstream.h>
 
 #include <kapplication.h>
 #include <kmainwindow.h>
@@ -24,44 +30,92 @@
 #include <kkeydialog.h>
 #include <kedittoolbar.h>
 #include <kstatusbar.h>
+#include <kstandarddirs.h>
+#include <ksavefile.h>
 
-#include "DbWidgetBase.h"
+#include "Exceptions.h"
+#include "DbWidget.h"
+#include "AthletDtd.h"
+#include "Wizard.h"
+#include "Athlet.h"
 
 namespace Phil
 {
 
-Philippides::Philippides()
-    : KMainWindow( 0, "Philippides" )
+Philippides::Philippides():
+    KMainWindow( 0, "Philippides" ),
+    m_pAthlet( 0 )
 {
-    //read XML .rc file and create menu and toolbar
-    createGUI();
 
     setupActions();
 
     statusBar()->show();
     statusBar()->message( "...ready" );
 
-    m_pBaseWidget = new CDbWidgetBase( this, "dbwidget" );
+    m_pBaseWidget = new CDbWidget( this, "dbwidget" );
     setCentralWidget( m_pBaseWidget );
+
 
     // apply the saved mainwindow settings, if any, and ask the mainwindow
     // to automatically save settings if changed: window size, toolbar
     // position, icon size, etc.
     setAutoSaveSettings();
+    
+    
+    //read XML .rc file and create menu and toolbar
+    createGUI("philippidesui.rc");
+    
+    checkForAthlet();
 }
 
 Philippides::~Philippides()
 {
 }
 
-void Philippides::saveProperties( KConfig* /*config*/ )
+void Philippides::checkForAthlet()
+{
+    // check for the existance of the athlet.xml file and open the 
+    // wizard if it doesn't exist.
+    QString sPath = locate( "data", QString( "philippides/%1" ).arg( DTD::szAthletFile ) );
+
+    if ( sPath.isEmpty() ){
+	std::clog << "Athlet file not found!" << std::endl;
+	QString sPath = kapp->dirs()->saveLocation( "data", "philippides/" );
+	sPath += DTD::szAthletFile;
+	std::clog << "Path to save athlet file to: " << sPath << std::endl;
+	CWizard* pWizard = new CWizard( this, "athletwizard" );
+	
+	//TODO: add error handling here
+	if ( pWizard->exec() == QDialog::Rejected )
+	    exit( -1 );
+	
+	m_pAthlet = pWizard->GetAthlet();
+
+	QFile file( sPath );
+	if ( file.open( IO_WriteOnly ) ){
+	    QTextStream stream( &file );
+	    stream << m_pAthlet->ToXml();
+	    file.flush();
+	    file.close();
+	}
+	else{
+	    throw Except::GenericException( "Philippides::checkForAthlet",
+				QString( "Can't write athlet databasefile to %1" ).arg( sPath ) );
+	}
+    }
+    else{
+	std::clog << "Athlet file found!" << std::endl;
+    }
+
+}
+
+void Philippides::saveProperties( KConfig* config )
 {
 
 }
 
-void Philippides::readProperties( KConfig* /*config*/ )
+void Philippides::readProperties( KConfig* config )
 {
-
 }
 
 void Philippides::setupActions()

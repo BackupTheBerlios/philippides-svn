@@ -104,7 +104,7 @@ class CAthlet
 	QTime m_kmTime5;			///< time the athlet needs to run 5000m
 	QTime m_kmTime10;			///< time the athlet needs to run 10.000m
 	unsigned short m_nAvgDistance;		///< the average distance the athlet normally runs
-	unsigned short m_nWeight;		///< the athlet's weight in g
+	unsigned short m_nWeight;		///< the athlet's weight in kg
 	unsigned short m_nAvgPulse;		///< the athlet's average pulse
 	unsigned short m_nBiggestDistance;	///< the biggest distance the athlet had ever run
 	unsigned short m_nHeight;		///< the athlet's height in cm
