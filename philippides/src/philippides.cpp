@@ -9,12 +9,16 @@
 // the class' header file
 #include "philippides.h"
 
+// stl includes
+#include <iostream>
+
 // qt includes
 #include <qlabel.h>
 #include <qstring.h>
 #include <qfileinfo.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qptrlist.h>
 
 // kde includes
 #include <kapplication.h>
@@ -36,6 +40,7 @@
 #include "AthletDtd.h"
 #include "Wizard.h"
 #include "Athlet.h"
+#include "Run.h"
 
 /*******************************************************************************
  * implementation
@@ -57,7 +62,9 @@ Philippides::Philippides():
     statusBar()->show();
     statusBar()->message( "...ready" );
 
-    m_pBaseWidget = new CDbWidget( this, "dbwidget" );
+    checkForAthlet();
+
+    m_pBaseWidget = new CDbWidget( this, "dbwidget", m_pAthlet );
     setCentralWidget( m_pBaseWidget );
 
 
@@ -70,7 +77,7 @@ Philippides::Philippides():
     //read XML .rc file and create menu and toolbar
     createGUI("philippidesui.rc");
     
-    checkForAthlet();
+    checkForRunDb();
 }
 
 Philippides::~Philippides()
@@ -88,7 +95,7 @@ void Philippides::checkForAthlet()
 	kdDebug() << "Athlet file not found!" <<  endl;
 	CWizard* pWizard = new CWizard( this, "athletwizard" );
 	
-	//TODO: add error handling here
+	/// @todo add error handling here
 	if ( pWizard->exec() == QDialog::Rejected )
 	    kapp->quit();
 	
@@ -103,7 +110,7 @@ void Philippides::checkForAthlet()
 	}
     }
     else{
-	//TODO: create CAthlet object from file.
+	/// @todo create CAthlet object from file.
 	kdDebug() << "Athlet file found!" << endl;
 	try{
 	    m_pAthlet = CAthlet::FromDisk();
@@ -116,12 +123,32 @@ void Philippides::checkForAthlet()
 
 }
 
-void Philippides::saveProperties( KConfig* config )
+void Philippides::checkForRunDb()
+{
+    if(!CRun::FileExists()){
+	kdDebug() << "database file does not exist." << endl;
+	return;
+    }
+
+    try{
+	QPtrList<CRun>* pList = CRun::FromDisk();
+	CRun* pRun;
+
+	for(pRun = pList->first(); pRun; pRun = pList->next()){
+	    m_pBaseWidget->SlotNewRun( pRun );
+	}
+    }
+    catch(Except::PhilException& e){
+	std::cerr << e.what() << std::endl;
+    }
+}
+
+void Philippides::saveProperties( KConfig* )
 {
     /* EMPTY */ 
 }
 
-void Philippides::readProperties( KConfig* config )
+void Philippides::readProperties( KConfig* )
 {
     /* EMPTY */ 
 }
@@ -129,6 +156,7 @@ void Philippides::readProperties( KConfig* config )
 void Philippides::setupActions()
 {
     KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
+    KStdAction::save( this, SLOT( SlotSave()), actionCollection());
 
     m_toolbarAction = KStdAction::showToolbar( this, SLOT( optionsShowToolbar() ), 
 						actionCollection() );
@@ -142,6 +170,11 @@ void Philippides::setupActions()
 void Philippides::optionsConfigureKeys()
 {
     KKeyDialog::configure( actionCollection());
+}
+
+void Philippides::SlotSave()
+{   
+    m_pBaseWidget->SlotSaveDatabase();
 }
 
 void Philippides::optionsConfigureToolbars()

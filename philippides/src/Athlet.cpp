@@ -49,7 +49,8 @@ namespace Phil
 CAthlet::CAthlet()
 {
     // here we use "standard" parameters, we always want minimal values for our 
-    // object. TODO: perhaps implement a empty-object constructor, think about it.
+    // object. 
+    /// @todo perhaps implement a empty-object constructor, think about it.
     CAthlet("Mickey", "Mouse", CAthlet::MALE, QDate(1928, 11, 18));
 }
     
@@ -186,7 +187,7 @@ CAthlet* CAthlet::FromDisk(const QString& sPath, const QString& sFileName)
     QXmlInputSource source(&file);
     QXmlSimpleReader reader;
 
-    //TODO: what about the parser's memory, who cares for it?
+    /// @todo what about the parser's memory, who cares for it?
     CAthletParser* parser = new CAthletParser(pAthlet);
     reader.setContentHandler(parser);
     reader.parse(source);

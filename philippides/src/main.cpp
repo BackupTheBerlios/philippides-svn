@@ -16,11 +16,13 @@
  * @todo insert text here
  */
 
+#include "Exceptions.h"
 #include "philippides.h"
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 static const char description[] =
     I18N_NOOP("A runner's diary");
@@ -44,24 +46,32 @@ int main(int argc, char **argv)
     KApplication app;
     Phil::Philippides *mainWin = 0;
 
-    if (app.isRestored())
-    {
-        RESTORE(Phil::Philippides);
+    try{
+	if (app.isRestored())
+	{
+	    RESTORE(Phil::Philippides);
+	}
+	else
+	{
+	    // no session.. just start up normally
+	    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+	    /// @todo do something with the command line args here
+
+	    mainWin = new Phil::Philippides();
+	    app.setMainWidget( mainWin );
+	    mainWin->show();
+
+	    args->clear();
+	}
     }
-    else
-    {
-        // no session.. just start up normally
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
-        /// @todo do something with the command line args here
-
-        mainWin = new Phil::Philippides();
-        app.setMainWidget( mainWin );
-        mainWin->show();
-
-        args->clear();
+    catch(Except::PhilException& e){
+	kdDebug() << e.what() << endl;
     }
-
+    catch(...){
+	kdDebug() << "EXCEPTION: main() caught uncaught exception! Terminating..." << endl;
+    }
+	
     // mainWin has WDestructiveClose flag by default, so it will delete itself.
     return app.exec();
 }

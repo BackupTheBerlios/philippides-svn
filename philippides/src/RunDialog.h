@@ -1,16 +1,18 @@
 //******************************************************************************
-/** @file DbWidget.h
- *  This file contains the definition of the class CDbWidget
+/** @file RunDialog.h
+ *
+ * short description.
+ * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date 23.3.2004
+ * @date Mar/32/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
 //******************************************************************************
 
-#ifndef __PHIL_DB_WIDGET_H__
-#define __PHIL_DB_WIDGET_H__
+#ifndef __PHIL_RUN_DIALOG_H__
+#define __PHIL_RUN_DIALOG_H__
 
 //------------------------------------------------------------------------------
 // STL headers
@@ -26,18 +28,14 @@
 //------------------------------------------------------------------------------
 // local headers
 //------------------------------------------------------------------------------
-#include "DbWidgetBase.h"
+#include "RunDialogBase.h"
 
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-// qt forwarding
-class QWidget;
-
-// local forwarding
+//local forwarding
 namespace Phil
 {
-    class CAthlet;
     class CRun;
 }
 
@@ -52,23 +50,23 @@ namespace Phil
 namespace Phil
 {
 
-/** @class CDbWidget
+/** @class CRunDialog
  *
  * short description.
  * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date 23.3.2004
+ * @date Mar/32/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
-class CDbWidget: public CDbWidgetBase
+class CRunDialog: public CRunDialogBase
 {
     public:
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-    typedef CDbWidget TSelf;
+    typedef CRunDialog TSelf;
    
     //--------------------------------------------------------------------------
     // structors
@@ -79,15 +77,15 @@ class CDbWidget: public CDbWidgetBase
 	*
 	* @param name desc
 	**/
-	CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthlet);
+	CRunDialog(QWidget* pParent, const char* szName);
 
 	/** default destructor */
-	virtual ~CDbWidget();
+	virtual ~CRunDialog();
 
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
-	void SetAthlet(const CAthlet* pAthlet);
+	CRun* GetRun();
 
     //------------------------------------------------------------------------------
     // operator
@@ -97,31 +95,27 @@ class CDbWidget: public CDbWidgetBase
     //------------------------------------------------------------------------------
     // methods
     //------------------------------------------------------------------------------
-    public slots:
-	void SlotNewRun();
-	void SlotNewRun(CRun* pRun);
-	void SlotSelected(QListViewItem* pItem);
-	void SlotSaveDatabase();
-	
+
     protected:
 
+
+    private slots:
+	void SlotCreateRun();
 
     private:
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	const CAthlet* m_pAthlet;
+	CRun* m_pRun;
     private:
-	void UpdateAthletLabel();
-	
     //------------------------------------------------------------------------------
     // implementation protection
     //------------------------------------------------------------------------------
 	TSelf& operator=( const TSelf& other );
-	CDbWidget( const TSelf& other );
+	CRunDialog( const TSelf& other );
 };
 
 }; //namespace
 
-#endif//__PHIL_DB_WIDGET_H__
+#endif//__PHIL_RUN_DIALOG_H__
 

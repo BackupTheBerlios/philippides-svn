@@ -1,16 +1,18 @@
 //******************************************************************************
-/** @file DbWidget.h
- *  This file contains the definition of the class CDbWidget
+/** @file RunListViewItem.h
+ *
+ * short description.
+ * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date 23.3.2004
+ * @date Mar/32/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
 //******************************************************************************
 
-#ifndef __PHIL_DB_WIDGET_H__
-#define __PHIL_DB_WIDGET_H__
+#ifndef __PHIL_RUN_LIST_VIEW_ITEM_H__
+#define __PHIL_RUN_LIST_VIEW_ITEM_H__
 
 //------------------------------------------------------------------------------
 // STL headers
@@ -20,24 +22,20 @@
 //------------------------------------------------------------------------------
 // xyzlib headers
 //------------------------------------------------------------------------------
-// headers for each lib should have own section
-
+// qt includes
+#include <qlistview.h>
 
 //------------------------------------------------------------------------------
 // local headers
 //------------------------------------------------------------------------------
-#include "DbWidgetBase.h"
+
 
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-// qt forwarding
-class QWidget;
-
 // local forwarding
 namespace Phil
 {
-    class CAthlet;
     class CRun;
 }
 
@@ -52,23 +50,23 @@ namespace Phil
 namespace Phil
 {
 
-/** @class CDbWidget
+/** @class RunListViewItem
  *
  * short description.
  * brief description.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
- * @date 23.3.2004
+ * @date Mar/32/2004
  *
  * (c) Falco Hirschenberger <hirsch@bigfoot.de>
  **/
-class CDbWidget: public CDbWidgetBase
+class CRunListViewItem: public QListViewItem
 {
     public:
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-    typedef CDbWidget TSelf;
+    typedef CRunListViewItem TSelf;
    
     //--------------------------------------------------------------------------
     // structors
@@ -79,16 +77,15 @@ class CDbWidget: public CDbWidgetBase
 	*
 	* @param name desc
 	**/
-	CDbWidget(QWidget* pParent, const char* szName, const CAthlet* pAthlet);
+	CRunListViewItem(QListView* pParent, const CRun* pRun);
 
 	/** default destructor */
-	virtual ~CDbWidget();
+	virtual ~CRunListViewItem();
 
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
-	void SetAthlet(const CAthlet* pAthlet);
-
+	const CRun* GetRun() const  {return m_pRun;}
     //------------------------------------------------------------------------------
     // operator
     //------------------------------------------------------------------------------
@@ -97,12 +94,7 @@ class CDbWidget: public CDbWidgetBase
     //------------------------------------------------------------------------------
     // methods
     //------------------------------------------------------------------------------
-    public slots:
-	void SlotNewRun();
-	void SlotNewRun(CRun* pRun);
-	void SlotSelected(QListViewItem* pItem);
-	void SlotSaveDatabase();
-	
+
     protected:
 
 
@@ -110,18 +102,17 @@ class CDbWidget: public CDbWidgetBase
     //------------------------------------------------------------------------------
     // members
     //------------------------------------------------------------------------------
-	const CAthlet* m_pAthlet;
+	const CRun* m_pRun;
+	    
     private:
-	void UpdateAthletLabel();
-	
     //------------------------------------------------------------------------------
     // implementation protection
     //------------------------------------------------------------------------------
 	TSelf& operator=( const TSelf& other );
-	CDbWidget( const TSelf& other );
+	CRunListViewItem( const TSelf& other );
 };
 
 }; //namespace
 
-#endif//__PHIL_DB_WIDGET_H__
+#endif//__PHIL_RUN_LIST_VIEW_ITEM_H__
 

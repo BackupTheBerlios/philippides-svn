@@ -223,7 +223,7 @@ QPtrList<CRun>* CRun::FromDisk(const QString& sPath, const QString& sFileName)
     QXmlInputSource source(&file);
     QXmlSimpleReader reader;
 
-    //TODO: What about tzhe parser's memory?
+    /// @todo What about the parser's memory?
     CRunParser* parser = new CRunParser(pList);
     reader.setContentHandler(parser);
     reader.parse(source);

@@ -105,7 +105,7 @@ bool CAthletParser::endElement(const QString& /* EMPTY */,
 			       const QString& /* EMPTY */, 
 			       const QString& sElementName)
 {   
-    //TODO: Do some error handling here, look if minimal requirements are present. 
+    /// @todo Do some error handling here, look if minimal requirements are present. 
     
     // we habe to strip the whitespaces in front and back of the string to allow
     // functions like fromString() to work correctly, watch out for problems on 
