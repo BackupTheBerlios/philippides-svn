@@ -13,8 +13,19 @@
 namespace DTD
 {
 
+/**
+ * the filename the rundb will be stored in
+ */
+const char* const szRunFile = "rundb.xml";
+    
+/**
+ * the rundb DTD version number
+ */
 const char* const szRundbVERSION = "1.0";
 
+/**
+ * the run DTD
+ */
 const char* const szRunDtd = 
     "<!-- the dtd describing an run database consisting of run entities -->\n"
     "<!DOCTYPE rundb[\n"

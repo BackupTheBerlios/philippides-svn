@@ -65,13 +65,11 @@ class CRun
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-    typedef CRun TSelf;
+	/** weather conditions */
+	enum EnWeather{ NOWEATHER = -1, CLEAR, CLOUDY, STORMY, SNOWY };
 
-    /** weather conditions */
-    enum EnWeather{ NOWEATHER = -1, CLEAR, CLOUDY, STORMY, SNOWY };
-
-    /** the athlet's personal impression of the run */
-    enum EnImpression{ NOIMPRESSION = -1, GOOD, FAIR, BAD, ABORTED };
+	/** the athlet's personal impression of the run */
+	enum EnImpression{ NOIMPRESSION = -1, GOOD, FAIR, BAD, ABORTED };
     
     //--------------------------------------------------------------------------
     // structors
@@ -92,9 +90,30 @@ class CRun
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
+	/**
+	 * Return a rundb XML header with version number.
+	 * 
+	 * @see DTD::szRundbVERSION
+	 * 
+	 * @return the headerstring
+	 */
 	static QString XmlHeader();
+
+	/**
+	 * Return a rundb XML footer string
+	 *
+	 * @return the footerstring
+	 */
 	static QString XmlFooter();
 
+	/**
+	 * Convert the object to an XML string.
+	 * 
+	 * @note No XML header and footer will be included, you must call the static 
+	 *	 methods XmlHeader() and XmlFooter() to get these.
+	 *
+	 * @return the objects XML string representation
+	 */
 	QString ToXml() const;
 
     //------------------------------------------------------------------------------

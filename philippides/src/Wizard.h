@@ -1,8 +1,6 @@
 //******************************************************************************
 /** @file Wizard.h
- *
- * short description.
- * brief description.
+ * This file contains the class CWizard definition.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date 23.3.2004
@@ -37,6 +35,7 @@
 // qt forwarding
 class QWidget;
 
+// local forwarding
 namespace Phil
 {
     class CAthlet;
@@ -54,9 +53,13 @@ namespace Phil
 {
 
 /** @class CWizard
- *
- * short description.
- * brief description.
+ * This class implements a CAthlet setup-wizard.
+ * The Wizard is shown on first Phil-startup, which usually means there is no 
+ * athlet.xml file in the user's home directory, and that is exactly what the 
+ * mainapp checks on startup.<br>
+ * The Wizard let the user accept Phil's licensing issues and then creates a 
+ * CAthlet object by letting the user fill out some forms. The CAthlet object
+ * is then serialized to his home directory.
  *
  * @author Falco Hirschenberger <hirsch@bigfoot.de>
  * @date 23.3.2004

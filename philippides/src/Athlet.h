@@ -51,8 +51,6 @@ class CAthlet
     //--------------------------------------------------------------------------
     // types
     //--------------------------------------------------------------------------
-	typedef CAthlet TSelf;
-
 	/** genders */
 	enum EnGender{ MALE, FEMALE };
    
@@ -87,7 +85,7 @@ class CAthlet
 	 * It can be written to file and will produce a valid xml document.
 	 *
 	 * @note Empty or standard values/unmodified values will not be included
-	 * in the string.
+	 *	 in the string.
 	 *
 	 * @return The XML sting containing the object's data. 
 	 **/

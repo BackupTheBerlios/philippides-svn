@@ -10,6 +10,11 @@
 #ifndef __ATHLET_DTD_H__
 #define __ATHLET_DTD_H__
 
+/** @namespace DTD DTD/XML related stuff.
+ * This namespace contains all DTD/XML related stuff like DTD strings which
+ * can be included in XML files, version numbers to handle updated XML formats
+ * and filenames for the XML database files.
+ */
 namespace DTD
 {
 

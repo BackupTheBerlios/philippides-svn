@@ -222,12 +222,12 @@ namespace $namespace
 $classname\:\:$classname()
 {
 
-};
+}
 
 $classname\:\:~$classname()
 {
 
-};
+}
 
 //------------------------------------------------------------------------------
 // accessors

@@ -56,12 +56,12 @@ CRun::CRun(const QDate& date, const QTime& time):
 	throw Except::InvalidDataException( "CRun::CRun", "date" );
     if( !m_Time.isValid() )
 	throw Except::InvalidDataException( "CRun::CRun", "time" );
-};
+}
 
 CRun::~CRun()
 {
-
-};
+    /* EMPTY */ 
+}
 
 //------------------------------------------------------------------------------
 // accessors

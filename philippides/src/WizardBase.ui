@@ -624,11 +624,20 @@
     </image>
 </images>
 <tabstops>
-    <tabstop>NoWayBtn</tabstop>
     <tabstop>FNameEdit</tabstop>
     <tabstop>LNameEdit</tabstop>
+    <tabstop>WeightInput</tabstop>
+    <tabstop>HeightInput</tabstop>
+    <tabstop>GenderBox</tabstop>
+    <tabstop>RunFreqInput</tabstop>
+    <tabstop>AvgDistInput</tabstop>
+    <tabstop>BigDistInput</tabstop>
+    <tabstop>AvgPulseInput</tabstop>
+    <tabstop>MorningPulseInput</tabstop>
+    <tabstop>NoWayBtn</tabstop>
     <tabstop>TextBrowser2</tabstop>
     <tabstop>LicenseTextBrowser</tabstop>
+    <tabstop>AcceptBtn</tabstop>
 </tabstops>
 <slots>
     <slot access="protected" specifier="pure virtual">SlotCheckPage2(const QString&amp;)</slot>

@@ -26,6 +26,7 @@ namespace Phil
     class CAthlet;
 }
 
+/** @todo document namespace */
 namespace Phil
 {
 
