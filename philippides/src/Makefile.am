@@ -56,7 +56,7 @@ philippides_SOURCES = 	main.cpp \
 			RunPtrList.cpp \
 			TrackEditorDialogBase.ui \
 			TrackEditorDialog.cpp \
-			MapWidget.cpp
+			MapWidget.cpp 
 			
  
 philippides_LDFLAGS = $(KDE_RPATH) $(all_libraries)  
@@ -70,3 +70,13 @@ kdelnk_DATA = philippides.desktop
 rcdir   = $(kde_datadir)/philippides
 rc_DATA = philippidesui.rc
 
+
+#########################################################################
+# TEST SECTION
+#########################################################################
+TESTS=phil_test
+check_PROGRAMS= $(TESTS)
+phil_test_SOURCES= tests/testAthlet.cpp Athlet.cpp AthletParser.cpp 
+phil_test_CXXFLAGS = $(philippides_CXXFLAGS)
+phil_test_LDFLAGS = $(KDE_RPATH) $(all_libraries) 
+phil_test_LDADD  =  $(philippides_LDADD)  -lunit++
