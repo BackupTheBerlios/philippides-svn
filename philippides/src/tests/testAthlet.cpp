@@ -20,12 +20,28 @@ int main(int argc, char** argv)
 	pAthlet->m_nHeight = 178;
 	pAthlet->m_nRunningFreq = 4;
 	pAthlet->m_nMorningPulse = 55;
-	std::cout << pAthlet->ToXml() << std::endl;
+	
+	pAthlet->ToDisk(".", "athlet.xml");
+
+	Phil::CAthlet* pAthletNew= Phil::CAthlet::FromDisk(".", "athlet.xml");
+	
+	std::cout << "The classes are: " 
+		  << (!(*pAthletNew != *pAthlet) ? "EQUAL" : "NOT EQUAL") 
+		  << std::endl;
+    }
+    catch(Except::PhilException& e)
+    {
+	std::cout << e.what() << std::endl;
     }
     catch(std::exception& e)
     {
 	std::cout << e.what() << std::endl;
     }
+    catch(...)
+    {
+	std::cout << "UNCAUGHT EXCEPTION!" << std::endl;
+    }
+
 
 exit(0);
 }

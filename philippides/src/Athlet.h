@@ -23,11 +23,9 @@
 // local headers
 //------------------------------------------------------------------------------
 
-
 //------------------------------------------------------------------------------
 // forwarding
 //------------------------------------------------------------------------------
-
 
 //******************************************************************************
 // declarations
@@ -57,8 +55,15 @@ class CAthlet
     //--------------------------------------------------------------------------
     // structors
     //--------------------------------------------------------------------------
+	
+	/**
+	 * default constructor.
+	 * Creates a sporty Mickey Mouse :-)
+	 */
+	CAthlet();
+	
 	/** 
-	* default constuctor
+	* Constuctor
 	*
 	* @exception Except::EmptyParamException
 	* @exception Except::InvalidDataException
@@ -112,6 +117,25 @@ class CAthlet
 	 */
 	void ToDisk(const QString& sPath, const QString& sFileName) const;
 
+	/**
+	 * Loads and creates a CAthlet object from disk.
+	 * This methods looks in KDE's default location for the file with the 
+	 * default name. (see DTD::szAthletDtd).
+	 *
+	 * @exception Except::GenericException
+	 */
+	static CAthlet* FromDisk();
+
+	/**
+	 * The object is deserialized from the given path with the given filename.
+	 *
+	 * @overload
+	 * @exception Except::IOException
+	 * @param sPath		[IN] - the path and filename to save to.
+	 * @param sFirstName	[IN] - the filename to which will be written.
+	 */ 
+	static CAthlet* FromDisk(const QString& sPath, const QString& sFileName);
+
     //------------------------------------------------------------------------------ 
     // methods
     //------------------------------------------------------------------------------ 
@@ -140,6 +164,21 @@ class CAthlet
 	unsigned short m_nRunningFreq;		///< how many training units does the athlet do
 	unsigned short m_nMorningPulse;		///< the athlet's moning pulse (pulse @b before getting up)
 };
+
+//------------------------------------------------------------------------------ 
+// operators
+//------------------------------------------------------------------------------ 
+
+/**
+ * equality operator
+ */
+bool operator==(const CAthlet& a, const CAthlet& b);
+
+/**
+ * inequality operator
+ */
+bool operator!=(const CAthlet& a, const CAthlet& b);
+    
 
 }; //namespace
 
