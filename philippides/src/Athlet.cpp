@@ -40,12 +40,14 @@ namespace Phil
 //------------------------------------------------------------------------------
 // structors
 //------------------------------------------------------------------------------
-CAthlet::CAthlet(const QString& sFirstName, const QString& sLastName, const QDate& birthday):
+CAthlet::CAthlet(const QString& sFirstName, const QString& sLastName, 
+		 EnGender gender, const QDate& birthday):
     m_sFirstName( sFirstName ),
     m_sLastName( sLastName ),
+    m_EnGender( gender ),
     m_birthday( birthday ),
-    m_fAvgDistance( 0.0 ),
-    m_fWeight( 0.0 ),
+    m_nAvgDistance( 0 ),
+    m_nWeight( 0 ),
     m_nAvgPulse( 0 ),
     m_nBiggestDistance( 0 ),
     m_nHeight( 0 ),
@@ -97,18 +99,22 @@ QString CAthlet::ToXml() const
 		"\t<firstname>" + m_sFirstName + "</firstname>\n")
 	    << (m_sLastName.isEmpty() ? "" : 
 		"\t<lastname>" + m_sLastName + "</lastname>\n")
+	    << ( (m_EnGender == FEMALE) ? "\t<gender value=\"female\"/>\n":
+		"\t<gender value=\"male\"/>\n" )
 	    << (!m_birthday.isValid() ? "" : 
 		"\t<birthday>" + m_birthday.toString( Qt::ISODate ) + "</birthday>\n")
-	    << (!(m_fWeight > 0.0) ? "" : 
-		"\t<weight>" + QString::number(m_fWeight) + "</weight>\n")
+	    << (!(m_nWeight > 0.0) ? "" : 
+		"\t<weight>" + QString::number(m_nWeight) + "</weight>\n")
 	    << (!(m_nHeight > 0) ? "" : 
 		"\t<height>" + QString::number(m_nHeight) + "</height>\n")
 	    << (!(m_nRunningFreq > 0) ? "" : 
 		"\t<runningfreq>" + QString::number(m_nRunningFreq) + "</runningfreq>\n")
-	    << (!(m_fAvgDistance > 0.0) ? "" : 
-		"\t<avgdist>" + QString::number(m_fAvgDistance) + "</avgdist>\n") 
+	    << (!(m_nAvgDistance > 0.0) ? "" : 
+		"\t<avgdist>" + QString::number(m_nAvgDistance) + "</avgdist>\n") 
 	    << (m_kmTime5.isNull() ? "" : 
 		"\t<kmtime5>" + m_kmTime5.toString(Qt::ISODate) + "</kmtime5>\n")
+	    << (!(m_nBiggestDistance > 0) ? "" : 
+		"\t<kmtime10>" + m_kmTime10.toString(Qt::ISODate) + "</kmtime10>\n")
 	    << (!(m_nBiggestDistance > 0) ? "" : 
 		"\t<biggestdist>" + QString::number(m_nBiggestDistance) + "</biggestdist>\n")
 	    << (!(m_nAvgPulse > 0) ? "" : 

@@ -20,12 +20,15 @@
 //------------------------------------------------------------------------------
 // xyzlib headers
 //------------------------------------------------------------------------------
-// headers for each lib should have own section
+// qt includes
+#include <qtextstream.h>
 
 
 //------------------------------------------------------------------------------
 // local headers
 //------------------------------------------------------------------------------
+#include "Exceptions.h"
+#include "RunDtd.h"
 #include "Run.h"
 
 
@@ -43,9 +46,17 @@ namespace Phil
 //------------------------------------------------------------------------------
 // structors
 //------------------------------------------------------------------------------
-CRun::CRun()
+CRun::CRun(const QDate& date, const QTime& time):
+    m_Date( date ),
+    m_Time( time ),
+    m_nPulse( 0 ),
+    m_EnWeather( NOVALUE ),
+    m_EnImpression( NOVALUE )
 {
-
+    if( !m_Date.isValid() )
+	throw Except::InvalidDataException( "CRun::CRun", "date" );
+    if( !m_Time.isValid() )
+	throw Except::InvalidDataException( "CRun::CRun", "time" );
 };
 
 CRun::~CRun()
@@ -56,7 +67,27 @@ CRun::~CRun()
 //------------------------------------------------------------------------------
 // accessors
 //------------------------------------------------------------------------------
+static QString CRun::XmlHeader() const
+{
+    QString sXml;
+    QTextStream stream( &sXml, IO_WriteOnly );
 
+    stream  << "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"
+	    << DTD::szRunDtd
+	    << "<rundb>\n";
+
+return sXml;
+}
+
+static QString CRun::XmlFooter() const
+{
+    return QString( "</rundb>" );
+}
+
+QString CRun::ToXml() const
+{
+
+}
 
 //------------------------------------------------------------------------------
 // operator

@@ -38,7 +38,7 @@ namespace Phil
 {
 
 /** @class CAthlet 
- * This class represent Phil's Athlet entity.
+ * This class represent Phil's \b athlet entity.
  * Objects of CAthlet contain data, representing athlet entities. There are 
  * methods for getting an XML string with the object's data.
  *
@@ -52,18 +52,28 @@ class CAthlet
     // types
     //--------------------------------------------------------------------------
 	typedef CAthlet TSelf;
+
+	/** genders */
+	static enum EnGender{ MALE, FEMALE };
    
     //--------------------------------------------------------------------------
     // structors
     //--------------------------------------------------------------------------
 	/** 
 	* default constuctor
+	*
 	* @exception Except::EmptyParamException
 	* @exception Except::InvalidDataException
 	*
-	* @param name desc
+	* @param sFirstName the athlet's first name
+	* @param sLastName the athlet's last name
+	* @param gender the athlet's gender \see EnGender
+	* @param birthday the athlet's birthday
 	**/
-	CAthlet( const QString& sFirstName, const QString& sLastName, const QDate& birthday );
+	CAthlet( const QString& sFirstName, 
+		 const QString& sLastName, 
+		 EnGender gender,
+		 const QDate& birthday);
 
 	/** default destructor */
 	virtual ~CAthlet();
@@ -89,10 +99,12 @@ class CAthlet
     //--------------------------------------------------------------------------
 	QString m_sFirstName;			///< the first name
 	QString m_sLastName;			///< the last name
+	EnGender m_EnGender;                    ///< the gender
 	QDate m_birthday;			///< the birthday
-	QTime m_kmTime5;			///< time the athlet needs to run 5 km
-	float m_fAvgDistance;			///< the average distence the athlet normally runs
-	float m_fWeight;			///< the athlet's weight in kg
+	QTime m_kmTime5;			///< time the athlet needs to run 5000m
+	QTime m_kmTime10;			///< time the athlet needs to run 10.000m
+	unsigned short m_nAvgDistance;		///< the average distance the athlet normally runs
+	unsigned short m_nWeight;		///< the athlet's weight in g
 	unsigned short m_nAvgPulse;		///< the athlet's average pulse
 	unsigned short m_nBiggestDistance;	///< the biggest distance the athlet had ever run
 	unsigned short m_nHeight;		///< the athlet's height in cm

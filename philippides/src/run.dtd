@@ -1,12 +1,19 @@
+#ifndef __RUN_DTD_H__
+#define __RUN_DTD_H__
+
+namespace DTD
+{
+
 <!-- the dtd describing an run database consisting of run entities -->
 <!DOCTYPE rundb[
 	<!ELEMENT rundb(run)*>
 		<!ELEMENT run(date,
+			      time,
 		              length?,
-			      			time?,
-			      			pulse?,
-			      			weather?,
-			      			comment?
+			      pulse?,
+			      weather?,
+			      impression?,
+			      comment?
 		)>
 			<!ATTLIST run key CDATA #REQUIRED> <!-- primary key -->
 
@@ -14,7 +21,11 @@
 			<!ELEMENT time (#PCDATA)>
 			<!ELEMENT pulse (#PCDATA)>
 			<!ELEMENT weather (#PCDATA) EMPTY>
-				<!ATTLIST weather (clear, cloudy, stormy, snowy) #REQUIRED>
+				<!ATTLIST weather value (clear, cloudy, stormy, snowy) #REQUIRED>
+			<!ELEMENT impression (#PCDATA) EMPTY>
+				<!ATTLIST impression value (good, fair, bad, aborted) #REQUIRED>
 			<!ELEMENT comment (#PCDATA)>
 ]>
-		
+
+};     // namespace
+#endif // include guard
