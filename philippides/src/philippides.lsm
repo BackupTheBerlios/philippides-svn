@@ -1,0 +1,16 @@
+Begin3
+Title:          Philippides -- Some description
+Version:        0.1
+Entered-date:   
+Description:    
+Keywords:       KDE Qt
+Author:         Falco Hirschenberger <hirsch@bigfoot.de>
+Maintained-by:  Falco Hirschenberger <hirsch@bigfoot.de>
+Home-page:      
+Alternate-site: 
+Primary-site:   ftp://ftp.kde.org/pub/kde/unstable/apps/utils
+                xxxxxx  philippides-0.1.tar.gz
+                xxx     philippides-0.1.lsm
+Platform:       Linux. Needs KDE
+Copying-policy: GPL
+End
