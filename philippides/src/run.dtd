@@ -6,7 +6,8 @@ namespace DTD
 
 <!-- the dtd describing an run database consisting of run entities -->
 <!DOCTYPE rundb[
-	<!ELEMENT rundb(run)*>
+	<!ELEMENT rundb (run)*>
+	<!ATTLIST rundb version CDATA #REQUIRED>
 		<!ELEMENT run(date,
 			      time,
 		              length?,
@@ -16,7 +17,6 @@ namespace DTD
 			      comment?
 		)>
 			<!ATTLIST run key CDATA #REQUIRED> <!-- primary key -->
-
 			<!ELEMENT date (#PCDATA)>
 			<!ELEMENT time (#PCDATA)>
 			<!ELEMENT pulse (#PCDATA)>

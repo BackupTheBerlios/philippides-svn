@@ -68,10 +68,10 @@ class CRun
     typedef CRun TSelf;
 
     /** weather conditions */
-    static enum EnWeather{ CLEAR, CLOUDY, STORMY, SNOWY, NOVALUE };
+    enum EnWeather{ CLEAR, CLOUDY, STORMY, SNOWY, NOWEATHER };
 
     /** the athlet's personal impression of the run */
-    static enum EnImpression{ GOOD, FAIR, BAD, ABORTED, NOVALUE };
+    enum EnImpression{ GOOD, FAIR, BAD, ABORTED, NOIMPRESSION };
     
     //--------------------------------------------------------------------------
     // structors
@@ -92,8 +92,8 @@ class CRun
     //--------------------------------------------------------------------------
     // accessors
     //--------------------------------------------------------------------------
-	static QString XmlHeader() const;
-	static QString XmlFooter() const;
+	QString XmlHeader() const;
+	QString XmlFooter() const;
 
 	QString ToXml() const;
 
@@ -102,11 +102,11 @@ class CRun
     //------------------------------------------------------------------------------
 	QDate m_Date;                 ///< the run's date
 	QTime m_Time;                 ///< time the run took
+	unsigned int  m_nLength;      ///< the run's length in m
 	unsigned char m_nPulse;       ///< the athlet's average pulse
 	EnWeather m_EnWeather;        ///< the run's weather conditions;
 	EnImpression m_EnImpression;  ///< the athlet's feeling while running
 	QString m_sComment;           ///< space for personal notes
-
 };
 
 }; //namespace

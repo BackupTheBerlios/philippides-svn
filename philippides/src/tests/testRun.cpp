@@ -4,15 +4,13 @@
 #include <qdatetime.h>
 
 #include "Exceptions.h"
-#include "Athlet.h"
+#include "Run.h"
 
 int main(int argc, char** argv)
 {
     try{
-	Phil::CAthlet* pAthlet = new Phil::CAthlet("Falco", "Hirschenberger", 
-						    Phil::CAthlet::MALE, QDate(1978, 7, 6));
-	pAthlet->m_nAvgDistance = 500;
-	std::cout << pAthlet->ToXml() << std::endl;
+	Phil::CRun* pRun = new Phil::CRun(QDate(2004, 3, 30), QTime(1, 13, 34)); 
+	std::cout << pRun->XmlHeader() << pRun->ToXml() << pRun->XmlFooter() << std::endl;
     }
     catch(std::exception& e)
     {

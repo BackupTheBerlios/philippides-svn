@@ -3,13 +3,14 @@
 
 namespace DTD
 {
-
+const char* const szAthletVERSION = "1.0";
+    
 const char* const szAthletDtd = 
     "\n<!-- the dtd describing an athlet entity -->\n"
     "<!DOCTYPE athlet [\n"
     "	<!ELEMENT athlet (firstname,\n"
     "			  lastname,\n"
-    "			  gender,\n,"
+    "			  gender,\n"
     "			  birthday,\n"
     "			  weight?,\n"
     "			  height?,\n"
@@ -21,10 +22,11 @@ const char* const szAthletDtd =
     "			  avgpulse?,\n"
     "			  morningpulse?\n"
     "	)>\n"
+    "	<!ATTLIST athlet version CDATA #REQUIRED>\n"
     "		<!ELEMENT firstname (#PCDATA)>\n"
     "		<!ELEMENT lastname (#PCDATA)>\n"
-    "           <!ELEMENT gender (#PCDATA) EMPTY>\n"
-    "               <!ATTLIST gender value (female, male) #REQUIRED>\n"
+    "           <!ELEMENT gender EMPTY>\n"
+    "           <!ATTLIST gender value (female | male) #REQUIRED>\n"
     "		<!ELEMENT birthday (#PCDATA)>\n"
     "		<!ELEMENT weight (#PCDATA)>\n"
     "		<!ELEMENT height (#PCDATA)>\n"

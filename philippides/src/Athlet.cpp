@@ -94,7 +94,7 @@ QString CAthlet::ToXml() const
     // (I should participate in the obfuscated code contest)
     stream  << "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"
 	    <<  DTD::szAthletDtd
-	    <<  "<athlet>\n"
+	    <<  "<athlet version=\"" << DTD::szAthletVERSION << "\">\n"
 	    << (m_sFirstName.isEmpty() ? "" : 
 		"\t<firstname>" + m_sFirstName + "</firstname>\n")
 	    << (m_sLastName.isEmpty() ? "" : 

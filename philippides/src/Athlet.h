@@ -54,7 +54,7 @@ class CAthlet
 	typedef CAthlet TSelf;
 
 	/** genders */
-	static enum EnGender{ MALE, FEMALE };
+	enum EnGender{ MALE, FEMALE };
    
     //--------------------------------------------------------------------------
     // structors
