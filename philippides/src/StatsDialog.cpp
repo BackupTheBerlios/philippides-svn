@@ -119,7 +119,7 @@ void CStatsDialog::SlotCreateStats()
 	    if(nDaysTo < 0)
 		break;
 	    if(nDaysTo < QDate::currentDate().dayOfYear())
-		m_pData->at(pRun->m_Date.weekNumber()) += pRun->m_nLength;
+		m_pData->at(pRun->m_Date.weekNumber()-1) += pRun->m_nLength;
 	}
 	statsWidget->SetData(m_pData, CStatsWidget::YEAR_WEEK_MODE);
     }
@@ -132,7 +132,7 @@ void CStatsDialog::SlotCreateStats()
 	    if(nDaysTo < 0)
 		break;
 	    if(nDaysTo < QDate::currentDate().dayOfYear())
-		m_pData->at(pRun->m_Date.month()) += pRun->m_nLength;
+		m_pData->at(pRun->m_Date.month()-1) += pRun->m_nLength;
 	}
 	statsWidget->SetData(m_pData, CStatsWidget::YEAR_MODE);
     }
