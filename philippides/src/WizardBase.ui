@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>724</width>
-            <height>483</height>
+            <height>485</height>
         </rect>
     </property>
     <property name="caption">
@@ -616,7 +616,13 @@ get up in the morning)? [1/s]</string>
                     <cstring>TextBrowser2</cstring>
                 </property>
                 <property name="text">
-                    <string>This software is in development stage, if you have suggestions or want to offer help, please contact me.&lt;br&gt;Help is always welcome.&lt;br&gt;&lt;br&gt;Yours Falco Hirschenberger &lt;br&gt;&lt;a href="mailto:hirsch@et-inf.fho-emden.de"&gt;hirsch@et-inf.fho-emden.de&lt;/a&gt;</string>
+                    <string>This software is in development stage, if you have suggestions or want to offer help, please contact me.&lt;br&gt;Help is always welcome.&lt;br&gt;&lt;br&gt;
+If you find this software useful, I'd be pleased if you send me a postcard to:&lt;br&gt;
+&lt;p align="center"&gt;Falco Hirschenberger&lt;br&gt;
+Neugasse 14&lt;br&gt;
+D-67294 Orbis&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;Yours Falco Hirschenberger &lt;br&gt;&lt;a href="mailto:hirsch@bigfoot.de"&gt;hirsch@bigfoot.de&lt;/a&gt;&lt;br&gt;&lt;br&gt;</string>
                 </property>
             </widget>
         </grid>
